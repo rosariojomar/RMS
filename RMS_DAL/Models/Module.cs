@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace RMS_DAL.Models
 {
-    public class RBU : BaseModel
+    public class Module
     {
-
         [Key]
-        public int RBUId { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int ModuleId { get; set; }
+        public string ModuleCode { get; set; }
+        public string ModuleName { get; set; }
+        public string ModuleDescription { get; set; }
 
     }
 }

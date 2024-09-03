@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 var connectionString = builder.Configuration.GetConnectionString("RMSConnection");
 builder.Services.AddDbContext<RMSContext>(options =>
     options.UseSqlServer(connectionString));
@@ -23,9 +25,6 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-
-
-
 
 
 app.UseRouting();
