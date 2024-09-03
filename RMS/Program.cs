@@ -17,7 +17,9 @@ builder.Services.AddDbContext<RMSContext>(options =>
 builder.Services.AddTransient<IRMSContext, RMSContext>();
 
 
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -30,7 +32,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -21,4 +21,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Impl\" />
+    <Folder Include="SQL Scripts and Backups\" />
+  </ItemGroup>
+
 </Project>
