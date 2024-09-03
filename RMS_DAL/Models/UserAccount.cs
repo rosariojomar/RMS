@@ -16,9 +16,7 @@ namespace RMS_DAL.Models
 
         public bool EnforcePasswordExpirePolicy { get; set; }
         public DateTime PasswordExpiration { get; set; }
-        public bool IsReference { get; set; }
         public int PersonId { get; set; }
         public int RoleId { get; set; }
-
     }
 }

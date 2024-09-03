@@ -22,8 +22,7 @@ namespace RMS.Controllers
         }
 
         // GET: api/PeopleAPI
-        [Route("People/All")]
-        [HttpGet]
+        [HttpGet("GetPeople")]
         public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
         {
             return await _context.People.ToListAsync();

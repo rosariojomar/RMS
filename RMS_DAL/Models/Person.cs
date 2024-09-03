@@ -13,6 +13,10 @@ namespace RMS_DAL.Models
         public string LastName { get; set; }
         public string? Middlename { get; set; }
         public string Position { get; set; }
-
+        public int RBUId { get; set; }
+        public int DepartmentId { get; set; }
+        public int DivisionId { get; set; }
+        public int UnitId { get; set; }
+        public bool IsReference { get; set; }
     }
 }

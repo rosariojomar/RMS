@@ -1,0 +1,119 @@
+﻿@model RMS_DAL.Models.Person
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Person</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PersonId" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Middlename" class="control-label"></label>
+                <input asp-for="Middlename" class="form-control" />
+                <span asp-validation-for="Middlename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Position" class="control-label"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RBUId" class="control-label"></label>
+                <input asp-for="RBUId" class="form-control" />
+                <span asp-validation-for="RBUId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                <input asp-for="DepartmentId" class="form-control" />
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DivisionId" class="control-label"></label>
+                <input asp-for="DivisionId" class="form-control" />
+                <span asp-validation-for="DivisionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitId" class="control-label"></label>
+                <input asp-for="UnitId" class="form-control" />
+                <span asp-validation-for="UnitId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsReference" /> @Html.DisplayNameFor(model => model.IsReference)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label"></label>
+                <input asp-for="DateCreated" class="form-control" />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedByUserId" class="control-label"></label>
+                <input asp-for="CreatedByUserId" class="form-control" />
+                <span asp-validation-for="CreatedByUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateUpdated" class="control-label"></label>
+                <input asp-for="DateUpdated" class="form-control" />
+                <span asp-validation-for="DateUpdated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedByUserId" class="control-label"></label>
+                <input asp-for="UpdatedByUserId" class="form-control" />
+                <span asp-validation-for="UpdatedByUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDeleted" class="control-label"></label>
+                <input asp-for="DateDeleted" class="form-control" />
+                <span asp-validation-for="DateDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedByUserId" class="control-label"></label>
+                <input asp-for="DeletedByUserId" class="form-control" />
+                <span asp-validation-for="DeletedByUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateRestore" class="control-label"></label>
+                <input asp-for="DateRestore" class="form-control" />
+                <span asp-validation-for="DateRestore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestoredByUserId" class="control-label"></label>
+                <input asp-for="RestoredByUserId" class="form-control" />
+                <span asp-validation-for="RestoredByUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
