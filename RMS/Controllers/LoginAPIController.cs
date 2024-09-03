@@ -44,5 +44,21 @@ namespace RMS.Controllers
             return await _context.People.ToListAsync();
         }
 
+        [HttpGet("UserPolicy")]
+        public async Task<string> GetUserPolicy(int userId, int roleId)
+        {
+            var userAccModel = _userAccountService.UserModuleAccess(userId, roleId);
+
+            if (userAccModel.UserModuleAccess != null)
+            {
+                var result = JsonConvert.SerializeObject(userAccModel);
+                return result;
+            }
+            
+            return "User doesn't have user access policy.";
+        }
+
+
+
     }
 }

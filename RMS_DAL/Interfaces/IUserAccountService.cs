@@ -14,6 +14,7 @@ namespace RMS_DAL.Interfaces
       
         UserAccountViewModel Login(string username, string password);
 
+        UserAccountModuleViewModel UserModuleAccess(int UserId, int RoleId);
 
     }
 }

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<RMS_DAL.Models.UserPolicyTransact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPolicyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeleteAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestoreAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedByUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedByUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRestore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestoredByUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPolicyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateAccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeleteAccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReadAccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestoreAccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedByUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedByUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRestore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestoredByUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserPolicyTransactId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserPolicyTransactId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserPolicyTransactId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

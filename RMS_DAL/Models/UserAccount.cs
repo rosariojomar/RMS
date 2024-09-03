@@ -18,5 +18,6 @@ namespace RMS_DAL.Models
         public DateTime PasswordExpiration { get; set; }
         public int PersonId { get; set; }
         public int RoleId { get; set; }
+        public int UserId { get; set; }
     }
 }

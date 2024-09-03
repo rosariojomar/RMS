@@ -1,4 +1,4 @@
-﻿@model RMS_DAL.Models.Person
+﻿@model RMS_DAL.Models.UserPolicyTransact
 
 @{
     ViewData["Title"] = "Create";
@@ -6,55 +6,45 @@
 
 <h1>Create</h1>
 
-<h4>Person</h4>
+<h4>UserPolicyTransact</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="UserPolicyId" class="control-label"></label>
+                <input asp-for="UserPolicyId" class="form-control" />
+                <span asp-validation-for="UserPolicyId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Middlename" class="control-label"></label>
-                <input asp-for="Middlename" class="form-control" />
-                <span asp-validation-for="Middlename" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Position" class="control-label"></label>
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RBUId" class="control-label"></label>
-                <input asp-for="RBUId" class="form-control" />
-                <span asp-validation-for="RBUId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
-                <input asp-for="DepartmentId" class="form-control" />
-                <span asp-validation-for="DepartmentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DivisionId" class="control-label"></label>
-                <input asp-for="DivisionId" class="form-control" />
-                <span asp-validation-for="DivisionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitId" class="control-label"></label>
-                <input asp-for="UnitId" class="form-control" />
-                <span asp-validation-for="UnitId" class="text-danger"></span>
+                <label asp-for="ModuleId" class="control-label"></label>
+                <input asp-for="ModuleId" class="form-control" />
+                <span asp-validation-for="ModuleId" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsReference" /> @Html.DisplayNameFor(model => model.IsReference)
+                    <input class="form-check-input" asp-for="CreateAccess" /> @Html.DisplayNameFor(model => model.CreateAccess)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UpdateAccess" /> @Html.DisplayNameFor(model => model.UpdateAccess)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DeleteAccess" /> @Html.DisplayNameFor(model => model.DeleteAccess)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ReadAccess" /> @Html.DisplayNameFor(model => model.ReadAccess)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RestoreAccess" /> @Html.DisplayNameFor(model => model.RestoreAccess)
                 </label>
             </div>
             <div class="form-group">

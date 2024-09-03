@@ -14,6 +14,7 @@ namespace RMS_DAL.Models
         public string ModuleCode { get; set; }
         public string ModuleName { get; set; }
         public string ModuleDescription { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }
