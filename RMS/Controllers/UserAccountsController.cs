@@ -10,22 +10,22 @@ using RMS_DAL.RMSDBContext;
 
 namespace RMS.Controllers
 {
-    public class UserAccountController : Controller
+    public class UserAccountsController : Controller
     {
         private readonly RMSContext _context;
 
-        public UserAccountController(RMSContext context)
+        public UserAccountsController(RMSContext context)
         {
             _context = context;
         }
 
-        // GET: UserAccount
+        // GET: UserAccounts
         public async Task<IActionResult> Index()
         {
             return View(await _context.UserAccounts.ToListAsync());
         }
 
-        // GET: UserAccount/Details/5
+        // GET: UserAccounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,18 +43,18 @@ namespace RMS.Controllers
             return View(userAccount);
         }
 
-        // GET: UserAccount/Create
+        // GET: UserAccounts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UserAccount/Create
+        // POST: UserAccounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserAccountId,Username,Password,EnforcePasswordExpirePolicy,PasswordExpiration,PersonId,RoleId,DateCreated,CreatedByUserId,DateUpdated,UpdatedByUserId,DateDeleted,DeletedByUserId,DateRestore,RestoredByUserId,IsActive")] UserAccount userAccount)
+        public async Task<IActionResult> Create([Bind("UserAccountId,Username,Password,EnforcePasswordExpirePolicy,PasswordExpiration,PersonId,RoleId,UserId,DateCreated,CreatedByUserId,DateUpdated,UpdatedByUserId,DateDeleted,DeletedByUserId,DateRestore,RestoredByUserId,IsActive")] UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace RMS.Controllers
             return View(userAccount);
         }
 
-        // GET: UserAccount/Edit/5
+        // GET: UserAccounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +81,12 @@ namespace RMS.Controllers
             return View(userAccount);
         }
 
-        // POST: UserAccount/Edit/5
+        // POST: UserAccounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserAccountId,Username,Password,EnforcePasswordExpirePolicy,PasswordExpiration,PersonId,RoleId,DateCreated,CreatedByUserId,DateUpdated,UpdatedByUserId,DateDeleted,DeletedByUserId,DateRestore,RestoredByUserId,IsActive")] UserAccount userAccount)
+        public async Task<IActionResult> Edit(int id, [Bind("UserAccountId,Username,Password,EnforcePasswordExpirePolicy,PasswordExpiration,PersonId,RoleId,UserId,DateCreated,CreatedByUserId,DateUpdated,UpdatedByUserId,DateDeleted,DeletedByUserId,DateRestore,RestoredByUserId,IsActive")] UserAccount userAccount)
         {
             if (id != userAccount.UserAccountId)
             {
@@ -116,7 +116,7 @@ namespace RMS.Controllers
             return View(userAccount);
         }
 
-        // GET: UserAccount/Delete/5
+        // GET: UserAccounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace RMS.Controllers
             return View(userAccount);
         }
 
-        // POST: UserAccount/Delete/5
+        // POST: UserAccounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
