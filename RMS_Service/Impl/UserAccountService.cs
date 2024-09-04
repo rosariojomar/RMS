@@ -25,9 +25,9 @@ namespace RMS_Service.Impl
 
             var userAccountModel = _context.UserAccounts.Where(x => x.Username == username && x.Password == password).SingleOrDefault();
 
-            if (userAccountVMModel != null)
+            if (userAccountModel != null)
             {
-                var personModel = _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault();
+                var personModel = _context.People.Where(x => x.PersonId == userAccountModel.PersonId).SingleOrDefault();
                 userAccountVMModel.UserAccountId = userAccountModel.UserAccountId;
                 userAccountVMModel.Username = userAccountModel.Username;
                 userAccountVMModel.Role = _context.Roles.Where(x => x.RoleId == userAccountModel.RoleId).SingleOrDefault().Name;

@@ -27,13 +27,13 @@ namespace RMS.Controllers
         public async Task<string> UserLogin(string username, string password)
         {
             var userAccModel = _userAccountService.Login(username, password);
-
-            if (userAccModel != null)
+            var result = string.Empty;
+            if (userAccModel.UserAccountId != 0)
             {
-                var result = JsonConvert.SerializeObject(userAccModel);
+                result = JsonConvert.SerializeObject(userAccModel);
                 return result;
             }
-            return "User or Password is Invalid";
+            return userAccModel.UserAccountId == 0 ? "User or Password is Invalid" : result;
         }
 
         // GET: api/PeopleAPI
