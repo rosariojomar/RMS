@@ -16,6 +16,7 @@ namespace RMS_DAL.Models
         public string? Middlename { get; set; }
         public string Position { get; set; }
         public string ZinzaiId { get; set; }
+        public string EmployeeEmail { get; set; }
         //Mr., Ms., Mrs.
         public string PersonTitle { get; set; }
         public string EmployeeStatus { get; set; }

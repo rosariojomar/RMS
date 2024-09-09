@@ -13,7 +13,6 @@ namespace RMS_DAL.Models
         public int UserAccountId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
         public bool EnforcePasswordExpirePolicy { get; set; }
         public DateTime PasswordExpiration { get; set; }
         public int PersonId { get; set; }
