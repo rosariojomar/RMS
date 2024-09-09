@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RMS_DAL.RMSDBContext;
 
@@ -11,9 +12,11 @@ using RMS_DAL.RMSDBContext;
 namespace RMS_DAL.Migrations
 {
     [DbContext(typeof(RMSContext))]
-    partial class RMSContextModelSnapshot : ModelSnapshot
+    [Migration("20240909173755_EmployeeProjectsAndEmployeeSkillsMigration")]
+    partial class EmployeeProjectsAndEmployeeSkillsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,123 +136,6 @@ namespace RMS_DAL.Migrations
                     b.HasKey("DivisionId");
 
                     b.ToTable("Divisions");
-                });
-
-            modelBuilder.Entity("RMS_DAL.Models.EmployeeProjects", b =>
-                {
-                    b.Property<int>("EmployeeProjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeProjectId"));
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateDeleted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateRestore")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProjectCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProjectDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProjectDuration")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ProjectEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ProjectStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RestoredByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdatedByUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeProjectId");
-
-                    b.ToTable("EmployeeProjects");
-                });
-
-            modelBuilder.Entity("RMS_DAL.Models.EmployeeSkills", b =>
-                {
-                    b.Property<int>("EmployeeSkillId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeSkillId"));
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateDeleted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateRestore")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RestoredByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillExpInMonths")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SkillName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SkillRating")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdatedByUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeSkillId");
-
-                    b.ToTable("EmployeeSkills");
                 });
 
             modelBuilder.Entity("RMS_DAL.Models.Module", b =>

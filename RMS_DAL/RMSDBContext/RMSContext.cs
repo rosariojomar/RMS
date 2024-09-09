@@ -32,6 +32,8 @@ namespace RMS_DAL.RMSDBContext
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserPolicy> UserPolicies { get; set; }
         public virtual DbSet<UserPolicyTransact> UserPolicyTransactions { get; set; }
+        public virtual DbSet<EmployeeProjects> EmployeeProjects { get; set; }
+        public virtual DbSet<EmployeeSkills> EmployeeSkills { get; set; }
 
 
 
