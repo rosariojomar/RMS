@@ -27,21 +27,21 @@ namespace RMS_DAL.Models
         public string JLPTLevel { get; set; }
         //Probationary, Regular
         public string EmployeeContractStatus { get; set; }
-        public DateTime DateHired { get; set; }
-        public DateTime RegularizationDate { get; set; }
+        public DateTime? DateHired { get; set; }
+        public DateTime? RegularizationDate { get; set; }
         public string? EmployeeProjects { get; set; }
         public string? EmployeeSkills { get; set; }
         public string? Gender { get; set; }
-        public DateTime EndOfEmployment { get; set; }
-        public DateTime ResignationDate { get; set; }
-        public bool IsBench { get; set; }
+        public DateTime? EndOfEmployment { get; set; }
+        public DateTime? ResignationDate { get; set; }
+        public bool? IsBench { get; set; }
         public int RBUId { get; set; }
         public int DepartmentId { get; set; }
         public int DivisionId { get; set; }
         public int UnitId { get; set; }
-        public bool IsReference { get; set; }
-        public bool IsManager { get; set; }
-        public bool IsOperationManager { get; set; }
+        public bool? IsReference { get; set; }
+        public bool? IsManager { get; set; }
+        public bool? IsOperationManager { get; set; }
 
     }
 }
