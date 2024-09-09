@@ -59,7 +59,7 @@ namespace RMS.Controllers
         }
 
 
-        [HttpPost("DeleteRBU")]
+        [HttpPost("DeleteResource")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var mngModel = _mngService.DeleteResource(id, UserAccountId);
@@ -72,7 +72,7 @@ namespace RMS.Controllers
             return mngModel == 0 ? "Delete Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreRBU")]
+        [HttpPost("RestoreResource")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var mngModel = _mngService.RestoreResource(id, UserAccountId);

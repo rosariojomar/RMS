@@ -17,6 +17,7 @@ namespace RMS_DAL.Models
         public DateTime TrainingStartDate { get; set; }
         public DateTime TrainingEndDate { get; set; }
         public int TrainingDurationInDays { get; set; }
+        public int TrainerId { get; set; }
 
     }
 }
