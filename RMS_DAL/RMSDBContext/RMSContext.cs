@@ -35,7 +35,8 @@ namespace RMS_DAL.RMSDBContext
         public virtual DbSet<EmployeeProjects> EmployeeProjects { get; set; }
         public virtual DbSet<EmployeeSkills> EmployeeSkills { get; set; }
         public virtual DbSet<ReferenceTable> ReferenceTables { get; set; }
-
+        public virtual DbSet<Training> Trainings { get; set; }
+        public virtual DbSet<TrainingTransact> TrainingTransacts { get; set; }
 
 
     }
