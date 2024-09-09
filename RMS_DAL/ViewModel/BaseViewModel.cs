@@ -8,15 +8,15 @@ namespace RMS_DAL.ViewModel
 {
     public class BaseViewModel
     {
-        public DateTime DateCreated { get; set; }
-        public int CreatedByUserId { get; set; }
-        public DateTime DateUpdated { get; set; }
-        public int UpdatedByUserId { get; set; }
-        public DateTime DateDeleted { get; set; }
-        public int DeletedByUserId { get; set; }
-        public DateTime DateRestore { get; set; }
-        public int RestoredByUserId { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? DateUpdated { get; set; }
+        public int? UpdatedByUserId { get; set; }
+        public DateTime? DateDeleted { get; set; }
+        public int? DeletedByUserId { get; set; }
+        public DateTime? DateRestore { get; set; }
+        public int? RestoredByUserId { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
     }
 }

@@ -11,12 +11,10 @@ namespace RMS.Controllers
     [ApiController]
     public class RBUAPIController : Controller
     {
-        private readonly RMSContext _context;
         private readonly RBUService _rbuService;
 
         public RBUAPIController(RMSContext context)
         {
-            _context = context;
             _rbuService = new RBUService(context);
         }
 
