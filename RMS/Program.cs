@@ -16,6 +16,21 @@ builder.Services.AddDbContext<RMSContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddTransient<IRMSContext, RMSContext>();
 
+builder.Services.AddCors();
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(
+    options =>
+    {
+        options.AddPolicy(name: MyAllowSpecificOrigins,
+            policy =>
+            {
+                policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+    }
+);
 
 
 var app = builder.Build();

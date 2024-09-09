@@ -7,6 +7,8 @@ using RMS_Service.Impl;
 
 namespace RMS.Controllers
 {
+    [Route("api/RBU")]
+    [ApiController]
     public class RBUAPIController : Controller
     {
         private readonly RMSContext _context;
