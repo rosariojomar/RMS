@@ -12,8 +12,10 @@ namespace RMS_DAL.Interfaces
         List<RBUViewModel> GetAllRbus();
         List<RBUViewModel> GetAllRBUsInactive();
 
-        int CreateRBU(RBUCreateViewModel rbuVM);
-        int UpdateRBU(RBUUpdateViewModel rbuVM);
+        int CreateRBU(RBUCreateViewModel userVM);
+        int UpdateRBU(RBUUpdateViewModel userVM);
+        int DeleteRBU(int id, int UserAccountId);
+        int RestoreRBU(int id, int UserAccountId);
 
         List<RBUIdNameViewModel> GetAllNameWithId();
 

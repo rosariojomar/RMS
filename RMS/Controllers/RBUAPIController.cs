@@ -57,6 +57,32 @@ namespace RMS.Controllers
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
+        [HttpPost("DeleteRBU")]
+        public async Task<string> Delete(int id, int UserAccountId)
+        {
+            var rbuModel = _rbuService.DeleteRBU(id, UserAccountId);
+            var result = string.Empty;
+            if (rbuModel != 0)
+            {
+                result = JsonConvert.SerializeObject(rbuModel);
+                return result;
+            }
+            return rbuModel == 0 ? "RBU Transaction Failed!" : result;
+        }
+
+        [HttpPost("RestoreRBU")]
+        public async Task<string> Restore(int id, int UserAccountId)
+        {
+            var rbuModel = _rbuService.RestoreRBU(id, UserAccountId);
+            var result = string.Empty;
+            if (rbuModel != 0)
+            {
+                result = JsonConvert.SerializeObject(rbuModel);
+                return result;
+            }
+            return rbuModel == 0 ? "RBU Transaction Failed!" : result;
+        }
+
         [HttpGet("RBUNameList")]
         public async Task<string> GetRBUNameList()
         {

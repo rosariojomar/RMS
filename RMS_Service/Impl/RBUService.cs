@@ -26,7 +26,7 @@ namespace RMS_Service.Impl
                 Name = rbuVM.Name,
                 Description = rbuVM.Description,
                 CreatedByUserId = rbuVM.CreatedByUserId,
-                DateCreated = rbuVM.DateCreated,
+                DateCreated = DateTime.Now,
                 IsActive = rbuVM.IsActive,
             };
 
@@ -42,8 +42,8 @@ namespace RMS_Service.Impl
             rbuModel.Code = rbuVM.Code;
             rbuModel.Name = rbuVM.Name;
             rbuModel.Description = rbuVM.Description;
-            rbuModel.UpdatedByUserId = rbuVM.CreatedByUserId;
-            rbuModel.DateUpdated = rbuVM.DateCreated;
+            rbuModel.UpdatedByUserId = rbuVM.UpdatedByUserId;
+            rbuModel.DateUpdated = DateTime.Now;
             rbuModel.IsActive = rbuVM.IsActive;
 
             _context.Update(rbuModel);
@@ -88,6 +88,33 @@ namespace RMS_Service.Impl
             return rbuModel.ToList();
         }
 
-       
+        public int DeleteRBU(int id, int UserAccountId)
+        {
+            var rbuModel = _context.RBU.Where(x => x.RBUId == id).SingleOrDefault();
+            rbuModel.DeletedByUserId = UserAccountId;
+            rbuModel.DateDeleted = DateTime.Now;
+            rbuModel.IsActive = false;
+
+
+            _context.Update(rbuModel);
+            _context.SaveChangesAsync();
+
+            return rbuModel.RBUId == 0 ? 0 : 1;
+
+        }
+
+        public int RestoreRBU(int id, int UserAccountId)
+        {
+            var rbuModel = _context.RBU.Where(x => x.RBUId == id).SingleOrDefault();
+            rbuModel.DeletedByUserId = UserAccountId;
+            rbuModel.DateDeleted = DateTime.Now;
+            rbuModel.IsActive = false;
+
+
+            _context.Update(rbuModel);
+            _context.SaveChangesAsync();
+
+            return rbuModel.RBUId == 0 ? 0 : 1;
+        }
     }
 }
