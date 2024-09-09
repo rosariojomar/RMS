@@ -40,5 +40,8 @@ namespace RMS_DAL.Models
         public int DivisionId { get; set; }
         public int UnitId { get; set; }
         public bool IsReference { get; set; }
+        public bool IsManager { get; set; }
+        public bool IsOperationManager { get; set; }
+
     }
 }
