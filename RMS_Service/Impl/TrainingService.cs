@@ -102,7 +102,7 @@ namespace RMS_Service.Impl
                 TrainingCode = x.TrainingCode,
                 TrainingName = x.TrainingName,
                 TrainingDescription = x.TrainingDescription,
-                TrainerFullname = _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().LastName + ", " + _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().LastName,
+                TrainerFullname = _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().LastName + ", " + _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().FirstName,
                 TrainingStartDate = x.TrainingStartDate,
                 TrainingEndDate = x.TrainingEndDate,
                 TrainingDurationInDays = x.TrainingDurationInDays,
