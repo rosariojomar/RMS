@@ -32,7 +32,7 @@ namespace RMS.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<string> Create(DepartmentCreateViewModel viewModel)
+        public async Task<string> Create([FromBody]DepartmentCreateViewModel viewModel)
         {
             var deptModel = _deptService.CreateDept(viewModel);
             var result = string.Empty;

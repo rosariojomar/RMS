@@ -31,7 +31,7 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(userModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return userModel.UserId == 0 ? 0 : 1;
         }
@@ -48,7 +48,7 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(userModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return userModel.UserId == 0 ? 0 : 1;
         }
@@ -97,7 +97,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.UserId == 0 ? 0 : 1;
         }
@@ -111,7 +111,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.UserId == 0 ? 0 : 1;
         }

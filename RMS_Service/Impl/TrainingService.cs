@@ -47,7 +47,7 @@ namespace RMS_Service.Impl
                 _context.Add(traineesModel);
             }
 
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return trainingModel.TrainingId == 0 ? 0 : 1;
         }
@@ -74,7 +74,7 @@ namespace RMS_Service.Impl
                 _context.Update(traineesModel);
             }
 
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return trainingModel.TrainingId == 0 ? 0 : 1;
         }
@@ -89,7 +89,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(trainingModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return trainingModel.TrainingId == 0 ? 0 : 1;
         }
@@ -138,7 +138,7 @@ namespace RMS_Service.Impl
             trainingModel.IsActive = true;
 
             _context.Update(trainingModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return trainingModel.TrainingId == 0 ? 0 : 1;
         }

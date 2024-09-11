@@ -50,7 +50,7 @@ namespace RMS_Service.Impl
                 };
                 _context.Add(policyTransactModel);
             }
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return policyModel.UserPolicyId == 0 ? 0 : 1;
 
@@ -84,7 +84,7 @@ namespace RMS_Service.Impl
                 _context.Update(policyTransactModel);
             }
 
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return policyModel.UserPolicyId == 0 ? 0 : 1;
         }
@@ -97,7 +97,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(policyModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return policyModel.UserPolicyId == 0 ? 0 : 1;
         }
@@ -110,7 +110,7 @@ namespace RMS_Service.Impl
             policyModel.IsActive = true;
 
             _context.Update(policyModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return policyModel.UserPolicyId == 0 ? 0 : 1;
         }

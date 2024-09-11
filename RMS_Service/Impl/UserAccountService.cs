@@ -42,12 +42,7 @@ namespace RMS_Service.Impl
 
             return userAccountVMModel;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="UserId"> User Type : HR, TRAINER, MANAGER, ADMIN</param>
-        /// <param name="RoleId"> ROLE: </param>
-        /// <returns></returns>
+      
         public UserAccountModuleViewModel UserModuleAccess(int UserId, int RoleId)
         {
             var UAMViewModel = new UserAccountModuleViewModel();
@@ -111,5 +106,8 @@ namespace RMS_Service.Impl
             return UAMViewModel;
 
         }
+
+
+
     }
 }

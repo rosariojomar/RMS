@@ -32,9 +32,9 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(deptModel);
-            _context.SaveChangesAsync();
-
-            return deptModel.DepartmentId == 0 ? 0 : 1;
+             _context.SaveChanges();
+            var newDeptId = deptModel.DepartmentId;
+            return newDeptId == 0 ? 0 : 1;
         }
         public int DeleteDept(int id, int UserAccountId)
         {
@@ -45,7 +45,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(deptModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return deptModel.DepartmentId == 0 ? 0 : 1;
         }
@@ -96,7 +96,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(deptModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return deptModel.DepartmentId == 0 ? 0 : 1;
         }
@@ -113,7 +113,7 @@ namespace RMS_Service.Impl
             deptModel.IsActive = userVM.IsActive;
 
             _context.Update(deptModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return deptModel.DepartmentId == 0 ? 0 : 1;
         }

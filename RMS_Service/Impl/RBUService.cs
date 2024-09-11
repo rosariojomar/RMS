@@ -31,7 +31,7 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.RBUId == 0 ? 0 : 1;
         }
@@ -47,7 +47,7 @@ namespace RMS_Service.Impl
             rbuModel.IsActive = rbuVM.IsActive;
 
             _context.Update(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.RBUId == 0 ? 0 : 1;
         }
@@ -97,7 +97,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.RBUId == 0 ? 0 : 1;
 
@@ -112,7 +112,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(rbuModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return rbuModel.RBUId == 0 ? 0 : 1;
         }

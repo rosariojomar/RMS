@@ -56,7 +56,7 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(personModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return personModel.PersonId == 0 ? 0 : 1;
         }
@@ -95,7 +95,7 @@ namespace RMS_Service.Impl
             personModel.IsActive = true;
 
             _context.Update(personModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return personModel.PersonId == 0 ? 0 : 1;
         }
@@ -109,7 +109,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(personModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return personModel.PersonId == 0 ? 0 : 1;
         }
@@ -122,7 +122,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(personModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return personModel.PersonId == 0 ? 0 : 1;
         }

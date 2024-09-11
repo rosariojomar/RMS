@@ -30,7 +30,7 @@ namespace RMS_Service.Impl
             };
 
             _context.Add(roleModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return roleModel.RoleId == 0 ? 0 : 1;
         }
@@ -46,7 +46,7 @@ namespace RMS_Service.Impl
             roleModel.IsActive = userVM.IsActive;
 
             _context.Update(roleModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return roleModel.RoleId == 0 ? 0 : 1;
         }
@@ -60,7 +60,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(roleModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return roleModel.RoleId == 0 ? 0 : 1;
         }
@@ -74,7 +74,7 @@ namespace RMS_Service.Impl
 
 
             _context.Update(roleModel);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return roleModel.RoleId == 0 ? 0 : 1;
         }
