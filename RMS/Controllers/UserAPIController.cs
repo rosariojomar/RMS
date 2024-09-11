@@ -33,7 +33,7 @@ namespace RMS.Controllers
             return userModel.Count() == 0 ? "There's no active Users" : result;
         }
 
-        [HttpPost("CreateUser")]
+        [HttpPost("Create")]
         public async Task<string> Create(UserCreateViewModel viewModel)
         {
             var userModel = _userService.CreateUser(viewModel);
@@ -46,7 +46,7 @@ namespace RMS.Controllers
             return userModel == 0 ? "User Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateUser")]
+        [HttpPost("Update")]
         public async Task<string> Update(UserUpdateViewModel viewModel)
         {
             var userModel = _userService.UpdateUser(viewModel);
@@ -59,7 +59,7 @@ namespace RMS.Controllers
             return userModel == 0 ? "User Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteUser")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var userModel = _userService.DeleteUser(id, UserAccountId);
@@ -72,7 +72,7 @@ namespace RMS.Controllers
             return userModel == 0 ? "User Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreUser")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var userModel = _userService.RestoreUser(id, UserAccountId);
@@ -85,7 +85,7 @@ namespace RMS.Controllers
             return userModel == 0 ? "User Transaction Failed!" : result;
         }
 
-        [HttpGet("RBUNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetRBUNameList()
         {
             var userModel = _userService.GetAllUserNameWithId();

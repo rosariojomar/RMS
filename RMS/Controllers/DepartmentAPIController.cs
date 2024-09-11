@@ -7,6 +7,8 @@ using RMS_Service.Impl;
 
 namespace RMS.Controllers
 {
+    [Route("api/Department")]
+    [ApiController]
     public class DepartmentAPIController : Controller
     {
         private readonly DepartmentService _deptService;
@@ -29,7 +31,7 @@ namespace RMS.Controllers
             return deptModel.Count() == 0 ? "There's no active Departments" : result;
         }
 
-        [HttpPost("CreateDept")]
+        [HttpPost("Create")]
         public async Task<string> Create(DepartmentCreateViewModel viewModel)
         {
             var deptModel = _deptService.CreateDept(viewModel);
@@ -42,7 +44,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateDept")]
+        [HttpPost("Update")]
         public async Task<string> Update(DepartmentUpdateViewModel viewModel)
         {
             var deptModel = _deptService.UpdateDept(viewModel);
@@ -55,7 +57,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteDept")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var deptModel = _deptService.DeleteDept(id, UserAccountId);
@@ -68,7 +70,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreDept")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var deptModel = _deptService.RestoreDept(id, UserAccountId);
@@ -81,7 +83,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpGet("DeptNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetRBUNameList()
         {
             var deptModel = _deptService.GetAllNameWithId();

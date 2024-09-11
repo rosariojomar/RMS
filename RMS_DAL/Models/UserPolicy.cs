@@ -11,6 +11,9 @@ namespace RMS_DAL.Models
     {
         [Key]
         public int UserPolicyId { get; set; }
+        public string UserPolicyCode { get; set; }
+        public string UserPolicyName { get; set; }
+        public string UserPolicyDescription { get; set; }
         public int UserId { get; set; } // User: HR/TRAINER/MANAGER/ADMIN
         public int RoleId { get; set; } // Role: HR Specialist/ HR Manager/ TRAINER/ SUB-TRAINER/MANAGER/ ASSISTANT MANAGER/ SUPERADMIN/ADMIN
 

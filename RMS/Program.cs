@@ -17,24 +17,23 @@ builder.Services.AddDbContext<RMSContext>(options =>
 builder.Services.AddTransient<IRMSContext, RMSContext>();
 
 builder.Services.AddCors();
+//builder.Services.AddControllers();
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(
+
     options =>
     {
         options.AddPolicy(name: MyAllowSpecificOrigins,
-            policy =>
-            {
-                policy.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            });
-    }
-);
-
-
+                          policy =>
+                          {
+                              policy.AllowAnyOrigin()
+                                    //.AllowCredentials()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader();
+                          });
+    });
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -51,4 +50,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+app.UseCors(MyAllowSpecificOrigins);
 app.Run();

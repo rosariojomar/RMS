@@ -32,7 +32,7 @@ namespace RMS.Controllers
             return mngModel.Count() == 0 ? "There's no active Resource(s)" : result;
         }
 
-        [HttpPost("CreateResource")]
+        [HttpPost("Create")]
         public async Task<string> Create(ManageResourceCreateViewModel viewModel)
         {
             var mngModel = _mngService.CreateResource(viewModel);
@@ -45,7 +45,7 @@ namespace RMS.Controllers
             return mngModel == 0 ? "Create Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("EditResource")]
+        [HttpPost("Edit")]
         public async Task<string> Update(ManageResourceUpdateViewModel viewModel)
         {
             var mngModel = _mngService.UpdateResource(viewModel);
@@ -59,7 +59,7 @@ namespace RMS.Controllers
         }
 
 
-        [HttpPost("DeleteResource")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var mngModel = _mngService.DeleteResource(id, UserAccountId);
@@ -72,7 +72,7 @@ namespace RMS.Controllers
             return mngModel == 0 ? "Delete Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreResource")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var mngModel = _mngService.RestoreResource(id, UserAccountId);

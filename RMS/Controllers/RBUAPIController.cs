@@ -31,7 +31,7 @@ namespace RMS.Controllers
             return  rbuModel.Count() == 0 ? "There's no active RBUs" : result;
         }
 
-        [HttpPost("CreateRBU")]
+        [HttpPost("Create")]
         public async Task<string> Create(RBUCreateViewModel viewModel)
         {
             var rbuModel = _rbuService.CreateRBU(viewModel);
@@ -44,7 +44,7 @@ namespace RMS.Controllers
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateRBU")]
+        [HttpPost("Update")]
         public async Task<string> Update(RBUUpdateViewModel viewModel)
         {
             var rbuModel = _rbuService.UpdateRBU(viewModel);
@@ -57,7 +57,7 @@ namespace RMS.Controllers
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteRBU")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var rbuModel = _rbuService.DeleteRBU(id, UserAccountId);
@@ -70,7 +70,7 @@ namespace RMS.Controllers
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreRBU")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var rbuModel = _rbuService.RestoreRBU(id, UserAccountId);
@@ -83,7 +83,7 @@ namespace RMS.Controllers
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpGet("RBUNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetRBUNameList()
         {
             var rbuModel = _rbuService.GetAllNameWithId();
