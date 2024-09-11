@@ -16,7 +16,10 @@ namespace RMS_DAL.Interfaces
 
         UserAccountModuleViewModel UserModuleAccess(int UserId, int RoleId);
 
-
+        int CreateUserAccount(UserAccountCreateViewModel vm);
+        int UpdateUserAccount(UserAccountUpdateViewModel vm);
+        int DeleteUserAccount(UserAccountUpdateViewModel vm);
+        int RestoreUserAccount(UserAccountUpdateViewModel vm);
 
 
     }

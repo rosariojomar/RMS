@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
+using RMS_DAL.Models;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
 using System;
@@ -18,7 +19,7 @@ namespace RMS_Service.Impl
         {
             _context = context;
         }
-
+      
         public UserAccountViewModel Login(string username, string password)
         {
             var userAccountVMModel = new UserAccountViewModel();
@@ -36,13 +37,11 @@ namespace RMS_Service.Impl
                 userAccountVMModel.RoleName = _context.Roles.Where(_x => _x.RoleId == userAccountModel.RoleId).SingleOrDefault().Name;
                 userAccountVMModel.UserId = userAccountModel.UserId;
                 userAccountVMModel.UserType = _context.Users.Where(_x => _x.UserId == userAccountModel.UserId).SingleOrDefault().Name;
-
-
             }
 
             return userAccountVMModel;
         }
-      
+
         public UserAccountModuleViewModel UserModuleAccess(int UserId, int RoleId)
         {
             var UAMViewModel = new UserAccountModuleViewModel();
@@ -95,7 +94,7 @@ namespace RMS_Service.Impl
                     }
                     UAMViewModel = listAccessModule;
                 }
-               
+
                 return UAMViewModel;
             }
             catch (Exception ex)
@@ -106,6 +105,70 @@ namespace RMS_Service.Impl
             return UAMViewModel;
 
         }
+
+        public int CreateUserAccount(UserAccountCreateViewModel vm)
+        {
+            var userAccModel = new UserAccount()
+            {
+                Username = vm.Username,
+                Password = vm.Password,
+                UserId = vm.UserId,
+                PersonId = vm.PersonId,
+                RoleId = vm.RoleId,
+                CreatedByUserId = vm.CreatedByUserId,
+                DateCreated = vm.DateCreated,
+                IsActive = vm.IsActive,
+            };
+
+            _context.Add(userAccModel);
+            _context.SaveChanges();
+            return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
+        }
+
+        public int UpdateUserAccount(UserAccountUpdateViewModel vm)
+        {
+            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == vm.UserAccountId).SingleOrDefault();
+            userAccModel.Username = vm.Username;
+            userAccModel.Password = vm.Password;
+            userAccModel.UserId = vm.UserId;
+            userAccModel.PersonId = vm.PersonId;
+            userAccModel.RoleId = vm.RoleId;
+            userAccModel.UpdatedByUserId = vm.UpdatedByUserId;
+            userAccModel.DateUpdated = DateTime.Now;
+            userAccModel.IsActive = vm.IsActive;
+
+            _context.Update(userAccModel);
+            _context.SaveChanges();
+            return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
+        }
+
+        public int DeleteUserAccount(UserAccountUpdateViewModel vm)
+        {
+            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == vm.UserAccountId).SingleOrDefault();
+            userAccModel.DeletedByUserId = vm.UpdatedByUserId;
+            userAccModel.DateDeleted = DateTime.Now;
+            userAccModel.IsActive = false;
+
+            _context.Update(userAccModel);
+            _context.SaveChanges();
+            return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
+        }
+
+        public int RestoreUserAccount(UserAccountUpdateViewModel vm)
+        {
+            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == vm.UserAccountId).SingleOrDefault();
+            userAccModel.DeletedByUserId = vm.UpdatedByUserId;
+            userAccModel.DateDeleted = DateTime.Now;
+            userAccModel.IsActive = true;
+
+            _context.Update(userAccModel);
+            _context.SaveChanges();
+            return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
+        }
+
+
+
+
 
 
 

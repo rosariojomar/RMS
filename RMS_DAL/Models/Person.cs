@@ -42,6 +42,8 @@ namespace RMS_DAL.Models
         public bool? IsReference { get; set; }
         public bool? IsManager { get; set; }
         public bool? IsOperationManager { get; set; }
+        public bool IsHR { get; set; }
+        public bool IsTrainer { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RMS_DAL.ViewModel
 {
-    public class UserAccountViewModel
+    public class UserAccountViewModel : BaseViewModel
     {
 
         public int UserAccountId { get; set; }
@@ -21,7 +21,7 @@ namespace RMS_DAL.ViewModel
     }
 
 
-    public class UserAccountCreateViewModel
+    public class UserAccountCreateViewModel : BaseViewModel
     {
         public int UserAccountId { get; set; }
         public string Username { get; set; }
@@ -33,7 +33,7 @@ namespace RMS_DAL.ViewModel
         public int UserId { get; set; }
     }
 
-    public class UserAccountUpdateViewModel
+    public class UserAccountUpdateViewModel : BaseViewModel
     {
         public int UserAccountId { get; set; }
         public string Username { get; set; }

@@ -29,7 +29,7 @@ namespace RMS_Service.Impl
                 TrainingEndDate = vm.TrainingEndDate,
                 TrainingDurationInDays = vm.TrainingDurationInDays,
                 CreatedByUserId = vm.CreatedByUserId,
-                DateCreated = vm.DateCreated,
+                DateCreated = DateTime.Now,
                 TrainerId = vm.TrainerId
             };
 
@@ -71,6 +71,8 @@ namespace RMS_Service.Impl
                 traineesModel.PersonId = item.PersonId;
                 traineesModel.GradingInPercentage = item.GradingInPercentage;
                 traineesModel.TraineeActivitiesLink = item.TraineeActivitiesLink;
+                traineesModel.UpdatedByUserId = vm.UpdatedByUserId;
+                traineesModel.DateUpdated = DateTime.Now;
                 _context.Update(traineesModel);
             }
 
@@ -86,7 +88,6 @@ namespace RMS_Service.Impl
             trainingModel.DeletedByUserId = UserAccountId;
             trainingModel.DateDeleted = DateTime.Now;
             trainingModel.IsActive = false;
-
 
             _context.Update(trainingModel);
             _context.SaveChanges();
