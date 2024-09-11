@@ -81,7 +81,7 @@ namespace RMS_Service.Impl
 
         public List<RoleIdNameViewModel> GetAllNameWithId()
         {
-            var roleModel = _context.Roles.Where(x => x.IsActive == false).Select(x => new RoleIdNameViewModel
+            var roleModel = _context.Roles.Where(x => x.IsActive == true).Select(x => new RoleIdNameViewModel
             {
                 Value = x.RoleId,
                 Text = x.Name,

@@ -144,7 +144,7 @@ namespace RMS_Service.Impl
 
         public List<ManageResourceIndexViewModel> GetAllInactive()
         {
-            var personModel = _context.People.Where(x => x.IsActive == true).Select(x => new ManageResourceIndexViewModel
+            var personModel = _context.People.Where(x => x.IsActive == false).Select(x => new ManageResourceIndexViewModel
             {
                 PersonId = x.RBUId,
                 EmployeeFullname = x.LastName + ", " + x.FirstName,

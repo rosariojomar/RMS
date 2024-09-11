@@ -79,7 +79,7 @@ namespace RMS_Service.Impl
 
         public List<UserIdNameViewModel> GetAllUserNameWithId()
         {
-            var userModel = _context.Users.Where(x => x.IsActive == false).Select(x => new UserIdNameViewModel
+            var userModel = _context.Users.Where(x => x.IsActive == true).Select(x => new UserIdNameViewModel
             {
                 Value = x.UserId,
                 Text = x.Name,

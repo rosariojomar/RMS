@@ -52,7 +52,7 @@ namespace RMS_Service.Impl
 
         public List<DepartmentViewModel> GetAllDept()
         {
-            var deptModel = _context.Departments.Where(x => x.IsActive == false).Select(x => new DepartmentViewModel
+            var deptModel = _context.Departments.Where(x => x.IsActive == true).Select(x => new DepartmentViewModel
             {
                 DepartmentId = x.DepartmentId,
                 Code = x.Code,

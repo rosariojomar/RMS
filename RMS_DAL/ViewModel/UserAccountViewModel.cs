@@ -14,7 +14,9 @@ namespace RMS_DAL.ViewModel
         public string Fullname { get; set; }
         public string Role { get; set; }
         public int RoleId { get; set; }
+        public string RoleName { get; set; }
         public int UserId { get; set; }
+        public string UserType { get; set; }
 
     }
 }

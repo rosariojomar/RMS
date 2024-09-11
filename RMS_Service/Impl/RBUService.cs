@@ -66,7 +66,7 @@ namespace RMS_Service.Impl
 
         public List<RBUIdNameViewModel> GetAllNameWithId()
         {
-            var rbuModel = _context.RBU.Where(x => x.IsActive == false).Select(x => new RBUIdNameViewModel
+            var rbuModel = _context.RBU.Where(x => x.IsActive == true).Select(x => new RBUIdNameViewModel
             {
                 Value = x.RBUId,
                 Text = x.Name,

@@ -31,9 +31,12 @@ namespace RMS_Service.Impl
                 userAccountVMModel.UserAccountId = userAccountModel.UserAccountId;
                 userAccountVMModel.Username = userAccountModel.Username;
                 userAccountVMModel.Role = _context.Roles.Where(x => x.RoleId == userAccountModel.RoleId).SingleOrDefault().Name;
-                userAccountVMModel.Fullname = personModel.FirstName + " " + personModel.LastName;
+                userAccountVMModel.Fullname = personModel.LastName + ", " + personModel.FirstName;
                 userAccountVMModel.RoleId = userAccountModel.RoleId;
+                userAccountVMModel.RoleName = _context.Roles.Where(_x => _x.RoleId == userAccountModel.RoleId).SingleOrDefault().Name;
                 userAccountVMModel.UserId = userAccountModel.UserId;
+                userAccountVMModel.UserType = _context.Users.Where(_x => _x.UserId == userAccountModel.UserId).SingleOrDefault().Name;
+
 
             }
 
