@@ -30,7 +30,7 @@ namespace RMS.Controllers
             return UnitModel.Count() == 0 ? "There's no active Units" : result;
         }
 
-        [HttpPost("CreateUnit")]
+        [HttpPost("Create")]
         public async Task<string> Create(UnitCreateViewModel viewModel)
         {
             var UnitModel = _UnitService.CreateUnit(viewModel);
@@ -43,7 +43,7 @@ namespace RMS.Controllers
             return UnitModel == 0 ? "Unit Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateUnit")]
+        [HttpPost("Update")]
         public async Task<string> Update(UnitUpdateViewModel viewModel)
         {
             var UnitModel = _UnitService.UpdateUnit(viewModel);
@@ -56,7 +56,7 @@ namespace RMS.Controllers
             return UnitModel == 0 ? "Unit Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteUnit")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var UnitModel = _UnitService.DeleteUnit(id, UserAccountId);
@@ -69,7 +69,7 @@ namespace RMS.Controllers
             return UnitModel == 0 ? "Unit Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreUnit")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var UnitModel = _UnitService.RestoreUnit(id, UserAccountId);
@@ -82,7 +82,7 @@ namespace RMS.Controllers
             return UnitModel == 0 ? "Unit Transaction Failed!" : result;
         }
 
-        [HttpGet("UnitNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetUnitNameList()
         {
             var UnitModel = _UnitService.GetAllNameWithId();

@@ -31,7 +31,7 @@ namespace RMS.Controllers
             return  ReferenceTableModel.Count() == 0 ? "There's no active Reference Tables" : result;
         }
 
-        [HttpPost("CreateReferenceTable")]
+        [HttpPost("Create")]
         public async Task<string> Create(ReferenceTableCreateViewModel viewModel)
         {
             var ReferenceTableModel = _ReferenceTableService.CreateReferenceTable(viewModel);
@@ -44,7 +44,7 @@ namespace RMS.Controllers
             return ReferenceTableModel == 0 ? "Reference Table Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateReferenceTable")]
+        [HttpPost("Update")]
         public async Task<string> Update(ReferenceTableUpdateViewModel viewModel)
         {
             var ReferenceTableModel = _ReferenceTableService.UpdateReferenceTable(viewModel);
@@ -57,7 +57,7 @@ namespace RMS.Controllers
             return ReferenceTableModel == 0 ? "Reference Table Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteReferenceTable")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var ReferenceTableModel = _ReferenceTableService.DeleteReferenceTable(id, UserAccountId);
@@ -70,7 +70,7 @@ namespace RMS.Controllers
             return ReferenceTableModel == 0 ? "Reference Table Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreReferenceTable")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var ReferenceTableModel = _ReferenceTableService.RestoreReferenceTable(id, UserAccountId);
@@ -83,7 +83,7 @@ namespace RMS.Controllers
             return ReferenceTableModel == 0 ? "Reference Table Transaction Failed!" : result;
         }
 
-        [HttpGet("ReferenceTableNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetReferenceTableNameList()
         {
             var ReferenceTableModel = _ReferenceTableService.GetAllNameWithId();

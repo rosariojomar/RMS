@@ -30,7 +30,7 @@ namespace RMS.Controllers
             return DivisionModel.Count() == 0 ? "There's no active Divisions" : result;
         }
 
-        [HttpPost("CreateDivision")]
+        [HttpPost("Create")]
         public async Task<string> Create(DivisionCreateViewModel viewModel)
         {
             var DivisionModel = _DivisionService.CreateDivision(viewModel);
@@ -43,7 +43,7 @@ namespace RMS.Controllers
             return DivisionModel == 0 ? "Division Transaction Failed!" : result;
         }
 
-        [HttpPost("UpdateDivision")]
+        [HttpPost("Update")]
         public async Task<string> Update(DivisionUpdateViewModel viewModel)
         {
             var DivisionModel = _DivisionService.UpdateDivision(viewModel);
@@ -56,7 +56,7 @@ namespace RMS.Controllers
             return DivisionModel == 0 ? "Division Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteDivision")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var DivisionModel = _DivisionService.DeleteDivision(id, UserAccountId);
@@ -69,7 +69,7 @@ namespace RMS.Controllers
             return DivisionModel == 0 ? "Division Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreDivision")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var DivisionModel = _DivisionService.RestoreDivision(id, UserAccountId);
@@ -82,7 +82,7 @@ namespace RMS.Controllers
             return DivisionModel == 0 ? "Division Transaction Failed!" : result;
         }
 
-        [HttpGet("DivisionNameList")]
+        [HttpGet("NameList")]
         public async Task<string> GetDivisionNameList()
         {
             var DivisionModel = _DivisionService.GetAllNameWithId();
