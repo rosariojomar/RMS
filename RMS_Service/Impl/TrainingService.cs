@@ -144,6 +144,20 @@ namespace RMS_Service.Impl
             return trainingModel.TrainingId == 0 ? 0 : 1;
         }
 
+        public List<TraineeSelectionViewModel> GetAllTraineeSelectionList()
+        {
+            var traineeViewModel = _context.People.Where(x => x.IsActive == true && x.IsBench == true).Select(x => new TraineeSelectionViewModel
+            {
+                ZinzaiId = x.ZinzaiId,
+                PersonId = x.PersonId,
+                TraineeFullname = x.LastName + ' ' + x.FirstName,
+                Position = x.EmployeeTitle,
+                Skills = x.EmployeeSkills
+            });
+
+            return traineeViewModel.ToList();
+        }
+
 
     }
 }

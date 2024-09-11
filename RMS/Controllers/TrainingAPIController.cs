@@ -31,7 +31,7 @@ namespace RMS.Controllers
             return trainingModel.Count() == 0 ? "There's no active Training(s)" : result;
         }
 
-        [HttpPost("CreateTraining")]
+        [HttpPost("Create")]
         public async Task<string> Create(TrainingCreateViewModel viewModel)
         {
             var trainingModel = _trainingService.CreateTraining(viewModel);
@@ -44,7 +44,7 @@ namespace RMS.Controllers
             return trainingModel == 0 ? "Create Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("EditTraining")]
+        [HttpPost("Update")]
         public async Task<string> Update(TrainingUpdateViewModel viewModel)
         {
             var trainingModel = _trainingService.UpdateTraining(viewModel);
@@ -57,7 +57,7 @@ namespace RMS.Controllers
             return trainingModel == 0 ? "Create Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("DeleteTraining")]
+        [HttpPost("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var trainingModel = _trainingService.DeleteTraining(id, UserAccountId);
@@ -70,7 +70,7 @@ namespace RMS.Controllers
             return trainingModel == 0 ? "Delete Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("RestoreTraining")]
+        [HttpPost("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var trainingModel = _trainingService.RestoreTraining(id, UserAccountId);
@@ -82,6 +82,20 @@ namespace RMS.Controllers
             }
             return trainingModel == 0 ? "Delete Resource Transaction Failed!" : result;
         }
+
+        [HttpGet("GetTraineeSelection")]
+        public async Task<string> GetTraineeSelectionList()
+        {
+            var trainingModel = _trainingService.GetAllTraineeSelectionList();
+            var result = string.Empty;
+            if (trainingModel.Count() != 0)
+            {
+                result = JsonConvert.SerializeObject(trainingModel);
+                return result;
+            }
+            return trainingModel.Count() == 0 ? "There's no active Bench Resource" : result;
+        }
+
 
 
     }

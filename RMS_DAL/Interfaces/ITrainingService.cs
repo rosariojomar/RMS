@@ -15,5 +15,6 @@ namespace RMS_DAL.Interfaces
         int RestoreTraining(int id, int UserAccountId);
         List<TrainingViewModel> GetAllActive();
         List<TrainingViewModel> GetAllInactive();
+        List<TraineeSelectionViewModel> GetAllTraineeSelectionList();
     }
 }

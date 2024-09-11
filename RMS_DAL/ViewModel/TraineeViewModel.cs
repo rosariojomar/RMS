@@ -19,4 +19,14 @@ namespace RMS_DAL.ViewModel
         public string TraineeActivitiesLink { get; set; }
 
     }
+
+    public class TraineeSelectionViewModel : BaseViewModel
+    {
+        public int PersonId { get; set; }
+        public string ZinzaiId { get; set; }
+        public string TraineeFullname { get; set; }
+        public string Position { get; set; }
+        public string Skills { get; set; }
+
+    }
 }

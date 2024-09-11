@@ -76,6 +76,8 @@ namespace RMS_DAL.ViewModel
         public bool IsReference { get; set; }
         public bool IsManager { get; set; }
         public bool IsOperationManager { get; set; }
+        public bool IsHR { get; set; }
+        public bool IsTrainer { get; set; }
     }
 
 
@@ -113,6 +115,8 @@ namespace RMS_DAL.ViewModel
         public bool IsReference { get; set; }
         public bool IsManager { get; set; }
         public bool IsOperationManager { get; set; }
+        public bool IsHR { get; set; }
+        public bool IsTrainer { get; set; }
     }
 
     public class ManageResourceIndexViewModel : BaseViewModel
