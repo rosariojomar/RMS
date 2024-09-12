@@ -16,7 +16,7 @@ namespace RMS.Controllers
             _reportService = new ReportService(context);
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("GetAnalytic")]
         public async Task<string> GetAllDivisionActive()
         {
             var reportModel = _reportService.GetAnalytics();
