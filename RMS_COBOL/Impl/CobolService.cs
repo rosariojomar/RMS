@@ -24,23 +24,23 @@ namespace RMS_COBOL.Impl
             string sAccessLogCobolProgram = string.Empty;
             if (action == (int)Cobol.EMPLOYEELISTTOCSV)
             {
-                sAccessLogCobolProgram = "EMPLOYEE-LIST-TO-CSV.exe";
+                sAccessLogCobolProgram = path + "EMPLOYEE-LIST-TO-CSV.exe";
             }
             else if (action == (int)Cobol.LOGTOCSV)
             {
-                sAccessLogCobolProgram = "LOGS-TO-CSV.exe";
+                sAccessLogCobolProgram = path+"LOGS-TO-CSV.exe";
             }
             else if (action == (int)Cobol.LOGTONOTEPAD)
             {
-                sAccessLogCobolProgram = "LOG-TO-NOTEPAD.exe";
+                sAccessLogCobolProgram = path + "LOG-TO-NOTEPAD.exe";
             }
             else if (action == (int)Cobol.TRAININGTOCSV)
             {
-                sAccessLogCobolProgram = "TRAINING-TO-CSV.exe";
+                sAccessLogCobolProgram = path + "TRAINING-TO-CSV.exe";
             }
             else if (action == (int)Cobol.TRANSLOG)
             {
-                sAccessLogCobolProgram = "TRANS-LOG.exe";
+                sAccessLogCobolProgram = path + "TRANS-LOG.exe";
                 File.WriteAllText(path, text);
             }
 
