@@ -163,7 +163,7 @@ namespace RMS_Service.Impl
 
         public List<TrainerSelectionViewModel> GetAllTrainerSelectionList()
         {
-            var trainerViewModel = _context.People.Where(x => x.IsActive == true && x.IsBench == true).Select(x => new TrainerSelectionViewModel
+            var trainerViewModel = _context.People.Where(x => x.IsActive == true && x.IsTrainer == true).Select(x => new TrainerSelectionViewModel
             {
                 PersonId = x.PersonId,
                 fullname = x.LastName + ' ' + x.FirstName,
