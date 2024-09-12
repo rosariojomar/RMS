@@ -42,7 +42,7 @@ namespace RMS_COBOL.Impl
             {
                 sAccessLogCobolProgram = appPath + "TRANS-LOG.exe";
                 path = path + "\\TRANS-LOG.txt";
-                File.WriteAllText(appPath, text);
+                File.WriteAllText(path, text);
             }
 
             Process procCobol = new Process();
