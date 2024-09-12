@@ -94,6 +94,7 @@ namespace RMS_Service.Impl
         {
             var roleModel = _context.Roles.Where(x => x.IsActive == true).Select(x => new RoleViewModel
             {
+                RoleId = x.RoleId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,
