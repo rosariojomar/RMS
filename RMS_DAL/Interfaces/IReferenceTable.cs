@@ -18,6 +18,7 @@ namespace RMS_DAL.Interfaces
         int RestoreReferenceTable(int id, int UserAccountId);
 
         List<ReferenceTableIdNameViewModel> GetAllNameWithId();
+        ReferenceTableUpdateViewModel GetById(int Id);
 
     }
 }

@@ -96,5 +96,19 @@ namespace RMS.Controllers
             return ReferenceTableModel.Count() == 0 ? "There's no active Reference Tables" : result;
         }
 
+
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var ReferenceTableModel = _ReferenceTableService.GetById(Id);
+            var result = string.Empty;
+            if (ReferenceTableModel.ReferenceTableId != 0)
+            {
+                result = JsonConvert.SerializeObject(ReferenceTableModel);
+                return result;
+            }
+            return ReferenceTableModel.ReferenceTableId == 0 ? "Reference not found" : result;
+        }
+
     }
 }

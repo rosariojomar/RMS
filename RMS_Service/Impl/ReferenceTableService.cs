@@ -120,5 +120,23 @@ namespace RMS_Service.Impl
 
             return ReferenceTableModel.ReferenceTableId == 0 ? 0 : 1;
         }
+
+        public ReferenceTableUpdateViewModel GetById(int Id)
+        {
+            var ReferenceTableModel = _context.ReferenceTables.Where(x => x.ReferenceTableId == Id).Select(x => new ReferenceTableUpdateViewModel
+            {
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                Classification = x.Classification,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+            });
+           
+            return (ReferenceTableUpdateViewModel)ReferenceTableModel;
+        }
+
+
     }
 }
