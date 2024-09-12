@@ -15,8 +15,8 @@ namespace RMS_COBOL.Impl
 
         public void WriteLog(int action, string contentsValue, string path)
         {
-            string text = contentsValue + "," + DateTime.Now.ToString();
-
+            string text = contentsValue + ", " + DateTime.Now.ToString();
+            string appPath = path;
             // Write the text to the file
 
 
@@ -27,7 +27,7 @@ namespace RMS_COBOL.Impl
             }
             else if (action == (int)Cobol.LOGTOCSV)
             {
-                sAccessLogCobolProgram = path+"LOGS-TO-CSV.exe";
+                sAccessLogCobolProgram = path + "LOGS-TO-CSV.exe";
             }
             else if (action == (int)Cobol.LOGTONOTEPAD)
             {
@@ -39,9 +39,9 @@ namespace RMS_COBOL.Impl
             }
             else if (action == (int)Cobol.TRANSLOG)
             {
-                sAccessLogCobolProgram = path + "TRANS-LOG.exe";
+                sAccessLogCobolProgram = appPath + "TRANS-LOG.exe";
                 path = path + "\\TRANS-LOG.txt";
-                File.WriteAllText(path, text);
+                File.WriteAllText(appPath, text);
             }
 
             Process procCobol = new Process();

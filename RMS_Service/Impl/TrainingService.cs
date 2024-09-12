@@ -34,6 +34,7 @@ namespace RMS_Service.Impl
                 IsActive = vm.IsActive,
             };
             _context.Add(trainingModel);
+            _context.SaveChanges();
 
             foreach (var item in vm.Trainees)
             {
@@ -43,6 +44,8 @@ namespace RMS_Service.Impl
                     PersonId = item.PersonId,
                     GradingInPercentage = (int)item.GradingInPercentage,
                     TraineeActivitiesLink = item.TraineeActivitiesLink,
+                    DateCreated = DateTime.Now,
+                    CreatedByUserId = vm.CreatedByUserId,
                     IsActive = true,
                 };
                 _context.Add(traineesModel);

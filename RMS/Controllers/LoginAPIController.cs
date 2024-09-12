@@ -39,7 +39,7 @@ namespace RMS.Controllers
                 var logPath = string.Empty;
 
                 result = JsonConvert.SerializeObject(userAccModel);
-                _cobolService.WriteLog((int)Cobol.TRANSLOG, "LOGIN, " + username, cobolAppPath);
+              //  _cobolService.WriteLog((int)Cobol.TRANSLOG, username + ", LOGIN, ", cobolAppPath);
                 return result;
             }
             return userAccModel.UserAccountId == 0 ? "User or Password is Invalid" : result;

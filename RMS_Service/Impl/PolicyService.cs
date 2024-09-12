@@ -32,6 +32,7 @@ namespace RMS_Service.Impl
                 IsActive = true,
             };
             _context.Add(policyModel);
+            _context.SaveChanges();
 
             foreach (var item in vm.PolicyTransact)
             {
