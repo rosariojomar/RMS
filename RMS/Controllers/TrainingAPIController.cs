@@ -96,6 +96,18 @@ namespace RMS.Controllers
             return trainingModel.Count() == 0 ? "There's no active Bench Resource" : result;
         }
 
+        [HttpGet("GetTrainerSelection")]
+        public async Task<string> GetTrainerSelectionList()
+        {
+            var trainerModel = _trainingService.GetAllTrainerSelectionList();
+            var result = string.Empty;
+            if (trainerModel.Count() != 0)
+            {
+                result = JsonConvert.SerializeObject(trainerModel);
+                return result;
+            }
+            return trainerModel.Count() == 0 ? "There's no active Trainer" : result;
+        }
 
 
     }

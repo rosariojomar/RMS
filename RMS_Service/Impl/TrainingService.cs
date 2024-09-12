@@ -74,6 +74,8 @@ namespace RMS_Service.Impl
                 traineesModel.TraineeActivitiesLink = item.TraineeActivitiesLink;
                 traineesModel.UpdatedByUserId = vm.UpdatedByUserId;
                 traineesModel.DateUpdated = DateTime.Now;
+                traineesModel.IsActive = vm.IsActive;
+
                 _context.Update(traineesModel);
             }
 
@@ -157,6 +159,17 @@ namespace RMS_Service.Impl
             });
 
             return traineeViewModel.ToList();
+        }
+
+        public List<TrainerSelectionViewModel> GetAllTrainerSelectionList()
+        {
+            var trainerViewModel = _context.People.Where(x => x.IsActive == true && x.IsBench == true).Select(x => new TrainerSelectionViewModel
+            {
+                PersonId = x.PersonId,
+                fullname = x.LastName + ' ' + x.FirstName,
+            });
+
+            return trainerViewModel.ToList();
         }
 
 

@@ -16,5 +16,6 @@ namespace RMS_DAL.Interfaces
         List<TrainingViewModel> GetAllActive();
         List<TrainingViewModel> GetAllInactive();
         List<TraineeSelectionViewModel> GetAllTraineeSelectionList();
+        List<TrainerSelectionViewModel> GetAllTrainerSelectionList();
     }
 }

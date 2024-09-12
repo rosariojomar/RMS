@@ -29,4 +29,10 @@ namespace RMS_DAL.ViewModel
         public string Skills { get; set; }
 
     }
+
+    public class TrainerSelectionViewModel : BaseViewModel
+    {
+        public int PersonId { get; set; }
+        public string fullname { get; set; }
+    }
 }
