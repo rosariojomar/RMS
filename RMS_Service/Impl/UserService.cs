@@ -37,17 +37,15 @@ namespace RMS_Service.Impl
         }
         public int UpdateUser(UserUpdateViewModel userVM)
         {
-            var userModel = new User()
-            {
-                Code = userVM.Code,
-                Name = userVM.Name,
-                Description = userVM.Description,
-                UpdatedByUserId = userVM.CreatedByUserId,
-                DateUpdated = userVM.DateUpdated,
-                IsActive = userVM.IsActive,
-            };
+            var userModel = _context.Users.Where(x => x.UserId == userVM.UserId).SingleOrDefault();
+            userModel.Code = userVM.Code;
+            userModel.Name = userVM.Name;
+            userModel.Description = userVM.Description;
+            userModel.UpdatedByUserId = userVM.CreatedByUserId;
+            userModel.DateUpdated = userVM.DateUpdated;
+            userModel.IsActive = userVM.IsActive;
 
-            _context.Add(userModel);
+            _context.Update(userModel);
             _context.SaveChanges();
 
             return userModel.UserId == 0 ? 0 : 1;
@@ -115,5 +113,21 @@ namespace RMS_Service.Impl
 
             return rbuModel.UserId == 0 ? 0 : 1;
         }
+
+
+        public UserUpdateViewModel GetById(int Id)
+        {
+            var userModel = _context.Users.Where(x => x.UserId == Id).Select(x => new UserUpdateViewModel {
+                UserId = x.UserId,
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                UpdatedByUserId = x.CreatedByUserId,
+                DateUpdated = x.DateUpdated,
+                IsActive = x.IsActive,
+            });
+            return (UserUpdateViewModel)userModel;
+        }
+
     }
 }

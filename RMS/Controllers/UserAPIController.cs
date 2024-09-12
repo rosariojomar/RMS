@@ -97,5 +97,18 @@ namespace RMS.Controllers
             }
             return userModel.Count() == 0 ? "There's no active Users" : result;
         }
+
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var userModel = _userService.GetById(Id);
+            var result = string.Empty;
+            if (userModel.UserId != 0)
+            {
+                result = JsonConvert.SerializeObject(userModel);
+                return result;
+            }
+            return userModel.UserId == 0 ? "User not found" : result;
+        }
     }
 }

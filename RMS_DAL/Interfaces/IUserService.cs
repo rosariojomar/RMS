@@ -18,5 +18,6 @@ namespace RMS_DAL.Interfaces
         List<UserIdNameViewModel> GetAllUserNameWithId();
         int DeleteUser(int id, int UserAccountId);
         int RestoreUser(int id, int UserAccountId);
+        UserUpdateViewModel GetById(int Id);
     }
 }
