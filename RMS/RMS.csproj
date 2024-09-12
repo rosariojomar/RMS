@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RMS_COBOL\RMS_COBOL.csproj" />
     <ProjectReference Include="..\RMS_DAL\RMS_DAL.csproj" />
     <ProjectReference Include="..\RMS_Service\RMS_Service.csproj" />
   </ItemGroup>

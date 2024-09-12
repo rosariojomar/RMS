@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Models;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
 using RMS_Service.Impl;
+using RMS.AppSett;
 
 namespace RMS.Controllers
 {
@@ -15,11 +18,13 @@ namespace RMS.Controllers
     {
         private readonly RMSContext _context;
         private readonly UserAccountService _userAccountService;
+        private readonly CobolService _cobolService;
 
         public LoginAPIController(RMSContext context)
         {
             _context = context;
             _userAccountService = new UserAccountService(context);
+            _cobolService = new CobolService();
         }
 
         // GET: api/PeopleAPI
@@ -30,7 +35,11 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (userAccModel.UserAccountId != 0)
             {
+                string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+                var logPath = string.Empty;
+
                 result = JsonConvert.SerializeObject(userAccModel);
+                _cobolService.WriteLog((int)Cobol.TRANSLOG, "LOGIN, " + username, cobolAppPath);
                 return result;
             }
             return userAccModel.UserAccountId == 0 ? "User or Password is Invalid" : result;

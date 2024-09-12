@@ -9,7 +9,7 @@ namespace RMS_DAL.Interfaces
     public interface ICobolService
     {
 
-        void WriteLog (string message);
+        void WriteLog(int action, string contentsValue, string path);
 
     }
 }
