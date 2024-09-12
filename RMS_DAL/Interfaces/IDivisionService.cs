@@ -18,5 +18,6 @@ namespace RMS_DAL.Interfaces
         int RestoreDivision(int id, int UserAccountId);
 
         List<DivisionIdNameViewModel> GetAllNameWithId();
+        DivisionUpdateViewModel GetById(int Id);
     }
 }

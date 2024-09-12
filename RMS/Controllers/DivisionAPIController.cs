@@ -95,5 +95,20 @@ namespace RMS.Controllers
             return DivisionModel.Count() == 0 ? "There's no active Divisions" : result;
         }
 
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var DivisionModel = _DivisionService.GetById(Id);
+            var result = string.Empty;
+            if (DivisionModel.DivisionId != 0)
+            {
+                result = JsonConvert.SerializeObject(DivisionModel);
+                return result;
+            }
+            return DivisionModel.DivisionId == 0 ? "Division not found" : result;
+        }
+
+
+
     }
 }

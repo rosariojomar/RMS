@@ -1,4 +1,5 @@
-﻿using RMS_DAL.Models;
+﻿using RMS_DAL.Interfaces;
+using RMS_DAL.Models;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RMS_Service.Impl
 {
-    public class DivisionService
+    public class DivisionService : IDivisionService
     {
         private readonly RMSContext _context;
         public DivisionService(RMSContext context)
@@ -17,18 +18,18 @@ namespace RMS_Service.Impl
             _context = context;
         }
 
-        public int CreateDivision(DivisionCreateViewModel DivisionVM)
+        public int CreateDivision(DivisionCreateViewModel x)
         {
             var DivisionModel = new Division()
             {
-                Code = DivisionVM.Code,
-                Name = DivisionVM.Name,
-                Description = DivisionVM.Description,
-                RBUId = DivisionVM.RBUId,
-                DepartmentId = DivisionVM.DepartmentId,
-                CreatedByUserId = DivisionVM.CreatedByUserId,
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                RBUId = x.RBUId,
+                DepartmentId = x.DepartmentId,
+                CreatedByUserId = x.CreatedByUserId,
                 DateCreated = DateTime.Now,
-                IsActive = DivisionVM.IsActive,
+                IsActive = x.IsActive,
             };
 
             _context.Add(DivisionModel);
@@ -37,17 +38,17 @@ namespace RMS_Service.Impl
             return DivisionModel.DivisionId == 0 ? 0 : 1;
         }
 
-        public int UpdateDivision(DivisionUpdateViewModel DivisionVM)
+        public int UpdateDivision(DivisionUpdateViewModel x)
         {
-            var DivisionModel = _context.Divisions.Where(x => x.DivisionId == DivisionVM.DivisionId).SingleOrDefault();
-            DivisionModel.Code = DivisionVM.Code;
-            DivisionModel.Name = DivisionVM.Name;
-            DivisionModel.Description = DivisionVM.Description;
-            DivisionModel.RBUId = DivisionVM.RBUId;
-            DivisionModel.DepartmentId = DivisionVM.DepartmentId;
-            DivisionModel.UpdatedByUserId = DivisionVM.UpdatedByUserId;
+            var DivisionModel = _context.Divisions.Where(x => x.DivisionId == x.DivisionId).SingleOrDefault();
+            DivisionModel.Code = x.Code;
+            DivisionModel.Name = x.Name;
+            DivisionModel.Description = x.Description;
+            DivisionModel.RBUId = x.RBUId;
+            DivisionModel.DepartmentId = x.DepartmentId;
+            DivisionModel.UpdatedByUserId = x.UpdatedByUserId;
             DivisionModel.DateUpdated = DateTime.Now;
-            DivisionModel.IsActive = DivisionVM.IsActive;
+            DivisionModel.IsActive = x.IsActive;
 
             _context.Update(DivisionModel);
             _context.SaveChanges();
@@ -123,6 +124,24 @@ namespace RMS_Service.Impl
             _context.SaveChanges();
 
             return DivisionModel.DivisionId == 0 ? 0 : 1;
+        }
+
+
+        public DivisionUpdateViewModel GetById(int Id)
+        {
+            var DivisionModel = _context.Divisions.Where(x => x.DivisionId == Id).Select(x => new DivisionUpdateViewModel
+            {
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                RBUId = x.RBUId,
+                DepartmentId = x.DepartmentId,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+            });
+
+            return (DivisionUpdateViewModel)DivisionModel;
         }
     }
 

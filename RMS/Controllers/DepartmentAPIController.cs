@@ -108,10 +108,5 @@ namespace RMS.Controllers
             }
             return deptModel.DepartmentId == 0 ? "Department not found" : result;
         }
-
-
-
-
-
     }
 }
