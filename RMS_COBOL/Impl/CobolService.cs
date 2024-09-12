@@ -15,7 +15,6 @@ namespace RMS_COBOL.Impl
 
         public void WriteLog(int action, string contentsValue, string path)
         {
-            path = path + "\\TRANS-LOG.txt";
             string text = contentsValue + "," + DateTime.Now.ToString();
 
             // Write the text to the file
@@ -41,6 +40,7 @@ namespace RMS_COBOL.Impl
             else if (action == (int)Cobol.TRANSLOG)
             {
                 sAccessLogCobolProgram = path + "TRANS-LOG.exe";
+                path = path + "\\TRANS-LOG.txt";
                 File.WriteAllText(path, text);
             }
 
