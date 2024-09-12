@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using XSystem.Security.Cryptography;
 
 namespace RMS_Service.Impl
 {
