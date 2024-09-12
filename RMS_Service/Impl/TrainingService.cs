@@ -41,7 +41,7 @@ namespace RMS_Service.Impl
                 {
                     TrainingId = trainingModel.TrainingId,
                     PersonId = item.PersonId,
-                    GradingInPercentage = item.GradingInPercentage,
+                    GradingInPercentage = (int)item.GradingInPercentage,
                     TraineeActivitiesLink = item.TraineeActivitiesLink,
                     IsActive = true,
                 };
@@ -190,7 +190,7 @@ namespace RMS_Service.Impl
                     TrainingTransactId = xy.TrainingTransactId,
                     TrainingId = xy.TrainingId,
                     PersonId = xy.PersonId,
-                    GradingInPercentage = xy.GradingInPercentage,
+                    GradingInPercentage = (int)xy.GradingInPercentage,
                     TraineeActivitiesLink = xy.TraineeActivitiesLink,
                     IsActive = xy.IsActive,
                 }).ToList(),
