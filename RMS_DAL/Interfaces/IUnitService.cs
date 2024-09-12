@@ -18,6 +18,7 @@ namespace RMS_DAL.Interfaces
         int RestoreUnit(int id, int UserAccountId);
 
         List<UnitIdNameViewModel> GetAllNameWithId();
+        UnitUpdateViewModel GetById(int Id);
 
     }
 }

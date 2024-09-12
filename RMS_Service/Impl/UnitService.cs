@@ -129,5 +129,25 @@ namespace RMS_Service.Impl
 
             return UnitModel.UnitId == 0 ? 0 : 1;
         }
+
+
+        public UnitUpdateViewModel GetById(int Id)
+        {
+            var UnitModel = _context.Units.Where(x => x.UnitId == Id).Select(x => new UnitUpdateViewModel
+            {
+                UnitId = x.UnitId,
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                RBUId = x.RBUId,
+                DepartmentId = x.DepartmentId,
+                DivisionId = x.DivisionId,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+            });
+
+            return (UnitUpdateViewModel)UnitModel;
+        }
     }
 }

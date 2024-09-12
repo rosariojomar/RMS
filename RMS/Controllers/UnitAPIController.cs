@@ -95,5 +95,19 @@ namespace RMS.Controllers
             return UnitModel.Count() == 0 ? "There's no active Units" : result;
         }
 
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var UnitModel = _UnitService.GetById(Id);
+            var result = string.Empty;
+            if (UnitModel.UnitId != 0)
+            {
+                result = JsonConvert.SerializeObject(UnitModel);
+                return result;
+            }
+            return UnitModel.UnitId == 0 ? "Unit not found" : result;
+        }
+
+
     }
 }
