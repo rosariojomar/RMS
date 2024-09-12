@@ -8,6 +8,7 @@ namespace RMS_DAL.ViewModel
 {
     public class ReportViewModel
     {
+
     }
 
     public class ReportAnalyticsViewModel
