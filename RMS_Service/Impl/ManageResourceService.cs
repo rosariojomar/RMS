@@ -62,7 +62,7 @@ namespace RMS_Service.Impl
         }
         public int UpdateResource(ManageResourceUpdateViewModel vm)
         {
-            var personModel = _context.People.Where(x => x.RBUId == vm.PersonId).SingleOrDefault();
+            var personModel = _context.People.Where(x => x.PersonId == vm.PersonId).SingleOrDefault();
             personModel.FirstName = vm.FirstName;
             personModel.LastName = vm.LastName;
             personModel.Middlename = vm.Middlename;
@@ -102,7 +102,7 @@ namespace RMS_Service.Impl
 
         public int DeleteResource(int id, int UserAccountId)
         {
-            var personModel = _context.People.Where(x => x.RBUId == id).SingleOrDefault();
+            var personModel = _context.People.Where(x => x.PersonId == id).SingleOrDefault();
             personModel.DeletedByUserId = UserAccountId;
             personModel.DateDeleted = DateTime.Now;
             personModel.IsActive = false;
@@ -115,7 +115,7 @@ namespace RMS_Service.Impl
         }
         public int RestoreResource(int id, int UserAccountId)
         {
-            var personModel = _context.People.Where(x => x.RBUId == id).SingleOrDefault();
+            var personModel = _context.People.Where(x => x.PersonId == id).SingleOrDefault();
             personModel.DeletedByUserId = UserAccountId;
             personModel.DateDeleted = DateTime.Now;
             personModel.IsActive = true;
@@ -129,7 +129,7 @@ namespace RMS_Service.Impl
 
         public List<ManageResourceIndexViewModel> GetAllActive()
         {
-            
+
             var personModel = _context.People.Where(x => x.IsActive == true).Select(x => new ManageResourceIndexViewModel
             {
                 PersonId = x.RBUId,
@@ -156,7 +156,42 @@ namespace RMS_Service.Impl
             return personModel.ToList();
         }
 
-       
 
+        public ManageResourceUpdateViewModel GetById(int Id)
+        {
+            var personModel = _context.People.Where(x => x.PersonId == Id).Select(x => new ManageResourceUpdateViewModel
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Middlename = x.Middlename,
+                Position = x.Position,
+                ZinzaiId = x.ZinzaiId,
+                EmployeeEmail = x.EmployeeEmail,
+                PersonTitle = x.PersonTitle,
+                EmployeeStatus = x.EmployeeStatus,
+                EmployeeTitle = x.EmployeeTitle,
+                EmployeeLocation = x.EmployeeLocation,
+                Grade_Level = x.Grade_Level,
+                JLPTLevel = x.JLPTLevel,
+                EmployeeContractStatus = x.EmployeeContractStatus,
+                DateHired = (DateTime)x.DateHired,
+                RegularizationDate = (DateTime)x.RegularizationDate,
+                EmployeeProjects = x.EmployeeProjects,
+                EmployeeSkills = x.EmployeeSkills,
+                Gender = x.Gender,
+                EndOfEmployment = (DateTime)x.EndOfEmployment,
+                ResignationDate = (DateTime)x.ResignationDate,
+                IsBench = (bool)x.IsBench,
+                RBUId = x.RBUId,
+                DepartmentId = x.DepartmentId,
+                DivisionId = x.DivisionId,
+                UnitId = x.UnitId,
+                CreatedByUserId = x.CreatedByUserId,
+                DateCreated = DateTime.Now,
+                IsActive = true,
+            });
+
+            return (ManageResourceUpdateViewModel)personModel;
+        }
     }
 }

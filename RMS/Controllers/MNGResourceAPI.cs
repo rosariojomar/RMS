@@ -86,5 +86,19 @@ namespace RMS.Controllers
         }
 
 
+        [HttpPost("GetById")]
+        public async Task<string> GetById(int id)
+        {
+            var mngModel = _mngService.GetById(id);
+            var result = string.Empty;
+            if (mngModel.PersonId != 0)
+            {
+                result = JsonConvert.SerializeObject(mngModel);
+                return result;
+            }
+            return mngModel.PersonId == 0 ? "Resource not found" : result;
+        }
+
+
     }
 }

@@ -15,6 +15,7 @@ namespace RMS_DAL.Interfaces
         int RestoreResource(int id, int UserAccountId);
         List<ManageResourceIndexViewModel> GetAllActive();
         List<ManageResourceIndexViewModel> GetAllInactive();
+        ManageResourceUpdateViewModel GetById(int Id);
 
     }
 }
