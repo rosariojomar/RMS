@@ -50,9 +50,4 @@ namespace RMS_DAL.ViewModel
 
     }
 
-
-
-
-
-
 }

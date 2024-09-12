@@ -39,7 +39,7 @@ namespace RMS_Service.Impl
             {
                 var traineesModel = new TrainingTransact()
                 {
-                    TrainingTransactId = trainingModel.TrainingId,
+                    TrainingId = trainingModel.TrainingId,
                     PersonId = item.PersonId,
                     GradingInPercentage = item.GradingInPercentage,
                     TraineeActivitiesLink = item.TraineeActivitiesLink,
@@ -68,7 +68,7 @@ namespace RMS_Service.Impl
             foreach (var item in vm.Trainees)
             {
                 var traineesModel = _context.TrainingTransacts.Where(x => x.TrainingTransactId == item.TrainingTransactId).SingleOrDefault();
-                traineesModel.TrainingTransactId = trainingModel.TrainingId;
+                traineesModel.TrainingId = trainingModel.TrainingId;
                 traineesModel.PersonId = item.PersonId;
                 traineesModel.GradingInPercentage = item.GradingInPercentage;
                 traineesModel.TraineeActivitiesLink = item.TraineeActivitiesLink;
@@ -172,6 +172,34 @@ namespace RMS_Service.Impl
             return trainerViewModel.ToList();
         }
 
+
+        public TrainingUpdateViewModel GetById(int Id)
+        {
+            var trainingModel = _context.Trainings.Where(x => x.TrainingId == Id).Select(x => new TrainingUpdateViewModel
+            {
+                TrainingId = x.TrainingId,
+                TrainingCode = x.TrainingCode,
+                TrainingName = x.TrainingName,
+                TrainingDescription = x.TrainingDescription,
+                TrainerId = x.TrainerId,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+                Trainees = _context.TrainingTransacts.Where(xy => xy.TrainingId == x.TrainingId).Select(xy => new TraineeViewModel
+                {
+                    TrainingTransactId = xy.TrainingTransactId,
+                    TrainingId = xy.TrainingId,
+                    PersonId = xy.PersonId,
+                    GradingInPercentage = xy.GradingInPercentage,
+                    TraineeActivitiesLink = xy.TraineeActivitiesLink,
+                    IsActive = xy.IsActive,
+                }).ToList(),
+
+            });
+
+
+            return (TrainingUpdateViewModel)trainingModel;
+        }
 
     }
 }

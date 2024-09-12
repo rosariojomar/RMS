@@ -109,6 +109,21 @@ namespace RMS.Controllers
             return trainerModel.Count() == 0 ? "There's no active Trainer" : result;
         }
 
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var trainerModel = _trainingService.GetById(Id);
+            var result = string.Empty;
+            if (trainerModel.TrainingId != 0)
+            {
+                result = JsonConvert.SerializeObject(trainerModel);
+                return result;
+            }
+            return trainerModel.TrainingId == 0 ? "Training not found" : result;
+        }
+
+
+
 
     }
 }
