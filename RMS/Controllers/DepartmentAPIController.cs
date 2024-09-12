@@ -95,5 +95,23 @@ namespace RMS.Controllers
             }
             return deptModel.Count() == 0 ? "There's no active Departments" : result;
         }
+
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int id)
+        {
+            var deptModel = _deptService.GetById(id);
+            var result = string.Empty;
+            if (deptModel.DepartmentId != 0)
+            {
+                result = JsonConvert.SerializeObject(deptModel);
+                return result;
+            }
+            return deptModel.DepartmentId == 0 ? "Department not found" : result;
+        }
+
+
+
+
+
     }
 }

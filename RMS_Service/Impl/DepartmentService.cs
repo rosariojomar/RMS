@@ -58,6 +58,7 @@ namespace RMS_Service.Impl
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,
+                RBUId = x.RBUId,
             });
 
             return deptModel.ToList();
@@ -71,6 +72,7 @@ namespace RMS_Service.Impl
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,
+                RBUId = x.RBUId,
             });
 
             return deptModel.ToList();
@@ -116,6 +118,20 @@ namespace RMS_Service.Impl
             _context.SaveChanges();
 
             return deptModel.DepartmentId == 0 ? 0 : 1;
+        }
+
+        public DepartmentViewModel GetById(int Id)
+        {
+            var deptModel = _context.Departments.Where(x => x.IsActive == true && x.DepartmentId == Id).Select(x => new DepartmentViewModel
+            {
+                DepartmentId = x.DepartmentId,
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                RBUId = x.RBUId,
+            });
+
+            return (DepartmentViewModel)deptModel;
         }
     }
 }

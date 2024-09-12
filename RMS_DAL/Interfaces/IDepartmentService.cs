@@ -18,5 +18,6 @@ namespace RMS_DAL.Interfaces
         int RestoreDept(int id, int UserAccountId);
 
         List<DepartmentIdNameViewModel> GetAllNameWithId();
+        DepartmentViewModel GetById(int Id);
     }
 }
