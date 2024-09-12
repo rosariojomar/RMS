@@ -152,5 +152,31 @@ namespace RMS_Service.Impl
         }
 
 
+        public PolicyUpdateViewModel GetById(int Id)
+        {
+            var policyModel = _context.UserPolicies.Where(x => x.UserPolicyId == Id).Select(x => new PolicyUpdateViewModel
+            {
+                UserPolicyId = x.UserPolicyId,
+                PolicyCode = x.UserPolicyCode,
+                PolicyName = x.UserPolicyName,
+                PolicyDescription = x.UserPolicyDescription,
+                RoleId = x.RoleId,
+                UserId = x.UserId,
+                CreatedByUserId = x.CreatedByUserId,
+                DateCreated = x.DateCreated,
+                IsActive = true,
+                PolicyTransact = _context.UserPolicyTransactions.Where(xy => xy.UserPolicyId == x.UserPolicyId).Select(xy => new PolicyTransactViewModel
+                {
+                    ModuleId = xy.ModuleId,
+                    CreateAccess = xy.CreateAccess,
+                    ReadAccess = xy.ReadAccess,
+                    UpdateAccess = xy.UpdateAccess,
+                    DeleteAccess = xy.DeleteAccess,
+                    RestoreAccess = xy.RestoreAccess,
+                }).ToList(),
+            });
+          
+            return (PolicyUpdateViewModel)policyModel;
+        }
     }
 }

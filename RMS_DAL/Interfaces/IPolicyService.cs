@@ -15,5 +15,6 @@ namespace RMS_DAL.Interfaces
         int RestorePolicy(int id, int UserAccountId);
         List<PolicyViewModel> GetAllActive();
         List<PolicyViewModel> GetAllInactive();
+        PolicyUpdateViewModel GetById(int Id);
     }
 }

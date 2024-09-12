@@ -84,5 +84,18 @@ namespace RMS.Controllers
             return policyModel == 0 ? "Delete Policy Transaction Failed!" : result;
         }
 
+
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var policyModel = _policyService.GetById(Id);
+            var result = string.Empty;
+            if (policyModel.UserPolicyId != 0)
+            {
+                result = JsonConvert.SerializeObject(policyModel);
+                return result;
+            }
+            return policyModel.UserPolicyId == 0 ? "Policy not found" : result;
+        }
     }
 }
