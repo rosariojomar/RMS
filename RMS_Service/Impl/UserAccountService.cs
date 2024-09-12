@@ -165,12 +165,5 @@ namespace RMS_Service.Impl
             _context.SaveChanges();
             return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
         }
-
-
-
-
-
-
-
     }
 }

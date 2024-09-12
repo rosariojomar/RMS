@@ -10,6 +10,11 @@ namespace RMS_DAL.Interfaces
 {
     public interface IPersonService
     {
-        PersonViewModel GetPersonById(int id);
+        int CreatePerson(PersonCreateViewModel vm);
+        int UpdatePerson(PersonUpdateViewModel vm);
+        int DeletePerson(int id, int UserAccountId);
+        int RestorePerson(int id, int UserAccountId);
+        PersonUpdateViewModel GetPersonById(int id);
+        List<PersonViewModel> GetAll();
     }
 }

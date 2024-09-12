@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using RMS_DAL.Models;
 using RMS_DAL.RMSDBContext;
+using RMS_DAL.ViewModel;
+using RMS_Service.Impl;
 
 namespace RMS.Controllers
 {
@@ -14,95 +17,89 @@ namespace RMS.Controllers
     [ApiController]
     public class PeopleAPIController : ControllerBase
     {
-        private readonly RMSContext _context;
-
+        private readonly PersonService _personService;
         public PeopleAPIController(RMSContext context)
         {
-            _context = context;
+            _personService = new PersonService(context);
         }
 
-        // GET: api/PeopleAPI
         [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
+        public async Task<string> GetAllPeople()
         {
-            return await _context.People.ToListAsync();
-        }
-
-        // GET: api/PeopleAPI/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(int id)
-        {
-            var person = await _context.People.FindAsync(id);
-
-            if (person == null)
+            var deptModel = _personService.GetAll();
+            var result = string.Empty;
+            if (deptModel.Count() != 0)
             {
-                return NotFound();
+                result = JsonConvert.SerializeObject(deptModel);
+                return result;
             }
-
-            return person;
+            return deptModel.Count() == 0 ? "There's no active Departments" : result;
         }
 
-        // PUT: api/PeopleAPI/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerson(int id, Person person)
+        [HttpPost("Create")]
+        public async Task<string> Create([FromBody] PersonCreateViewModel viewModel)
         {
-            if (id != person.PersonId)
+            var personModel = _personService.CreatePerson(viewModel);
+            var result = string.Empty;
+            if (personModel != 0)
             {
-                return BadRequest();
+                result = JsonConvert.SerializeObject(personModel);
+                return result;
             }
-
-            _context.Entry(person).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return personModel == 0 ? "Person Transaction Failed!" : result;
         }
 
-        // POST: api/PeopleAPI
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        [HttpPost("Update")]
+        public async Task<string> Update([FromBody] PersonUpdateViewModel viewModel)
         {
-            _context.People.Add(person);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
-        }
-
-        // DELETE: api/PeopleAPI/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePerson(int id)
-        {
-            var person = await _context.People.FindAsync(id);
-            if (person == null)
+            var personModel = _personService.UpdatePerson(viewModel);
+            var result = string.Empty;
+            if (personModel != 0)
             {
-                return NotFound();
+                result = JsonConvert.SerializeObject(personModel);
+                return result;
             }
-
-            _context.People.Remove(person);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return personModel == 0 ? "Person Transaction Failed!" : result;
         }
 
-        private bool PersonExists(int id)
+        [HttpPost("Delete")]
+        public async Task<string> Delete(int id, int UserAccountId)
         {
-            return _context.People.Any(e => e.PersonId == id);
+            var personModel = _personService.DeletePerson(id, UserAccountId);
+            var result = string.Empty;
+            if (personModel != 0)
+            {
+                result = JsonConvert.SerializeObject(personModel);
+                return result;
+            }
+            return personModel == 0 ? "Person Transaction Failed!" : result;
         }
+
+        [HttpPost("Restore")]
+        public async Task<string> Restore(int id, int UserAccountId)
+        {
+            var personModel = _personService.RestorePerson(id, UserAccountId);
+            var result = string.Empty;
+            if (personModel != 0)
+            {
+                result = JsonConvert.SerializeObject(personModel);
+                return result;
+            }
+            return personModel == 0 ? "Person Transaction Failed!" : result;
+        }
+
+        [HttpPost("GetById")]
+        public async Task<string> GetById(int id)
+        {
+            var personModel = _personService.GetPersonById(id);
+            var result = string.Empty;
+            if (personModel.PersonId != 0)
+            {
+                result = JsonConvert.SerializeObject(personModel);
+                return result;
+            }
+            return personModel.PersonId == 0 ? "Person Transaction Failed!" : result;
+        }
+
     }
 }

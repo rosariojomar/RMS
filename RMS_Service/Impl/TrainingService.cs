@@ -30,9 +30,9 @@ namespace RMS_Service.Impl
                 TrainingDurationInDays = vm.TrainingDurationInDays,
                 CreatedByUserId = vm.CreatedByUserId,
                 DateCreated = DateTime.Now,
-                TrainerId = vm.TrainerId
+                TrainerId = vm.TrainerId,
+                IsActive = vm.IsActive,
             };
-
             _context.Add(trainingModel);
 
             foreach (var item in vm.Trainees)
@@ -43,6 +43,7 @@ namespace RMS_Service.Impl
                     PersonId = item.PersonId,
                     GradingInPercentage = item.GradingInPercentage,
                     TraineeActivitiesLink = item.TraineeActivitiesLink,
+                    IsActive = true,
                 };
                 _context.Add(traineesModel);
             }
