@@ -3,6 +3,7 @@ using RMS_DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,32 +46,24 @@ namespace RMS_COBOL.Impl
             }
 
             Process procCobol = new Process();
+            try
+            {
 
-            procCobol.StartInfo.FileName = sAccessLogCobolProgram;
-            procCobol.StartInfo.UseShellExecute = false;
-            procCobol.StartInfo.RedirectStandardInput = true;
-            procCobol.StartInfo.RedirectStandardOutput = true;
-            procCobol.Start();
-            procCobol.WaitForExit();
+                procCobol.StartInfo.FileName = sAccessLogCobolProgram;
+                //procCobol.StartInfo.UseShellExecute = false;
+                //procCobol.StartInfo.RedirectStandardInput = true;
+                //procCobol.StartInfo.RedirectStandardOutput = true;
+                procCobol.Start();
+            }
+            catch (Exception)
+            {
 
+            }
+            finally
+            {
+                procCobol.WaitForExit();
 
-            //try
-            //{
-            //    // Write the combined bytes to the COBOL program's standard input
-            //    //procCobol.StandardInput.BaseStream.Write(byteCombinedBytes, 0, byteCombinedBytes.Length);
-            //    //procCobol.StandardInput.BaseStream.Flush();
-            //    //procCobol.StandardInput.Close();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.ToString());
-            //}
-            //finally
-            //{
-            //    procCobol.WaitForExit();
-            //    Console.WriteLine("Data has been passed to the COBOL program.");
-            //}
-
+            }
         }
     }
 }
