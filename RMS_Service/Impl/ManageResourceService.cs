@@ -48,11 +48,13 @@ namespace RMS_Service.Impl
                 DepartmentId = vm.DepartmentId,
                 DivisionId = vm.DivisionId,
                 UnitId = vm.UnitId,
-                IsManager = vm.IsManager,
-                IsOperationManager = vm.IsOperationManager,
                 CreatedByUserId = vm.CreatedByUserId,
                 DateCreated = DateTime.Now,
                 IsActive = true,
+                IsHR = false,
+                IsManager = false,
+                IsTrainer = false,
+                IsOperationManager = false,
             };
 
             _context.Add(personModel);
@@ -88,8 +90,6 @@ namespace RMS_Service.Impl
             personModel.DepartmentId = vm.DepartmentId;
             personModel.DivisionId = vm.DivisionId;
             personModel.UnitId = vm.UnitId;
-            personModel.IsManager = vm.IsManager;
-            personModel.IsOperationManager = vm.IsOperationManager;
             personModel.CreatedByUserId = vm.CreatedByUserId;
             personModel.DateCreated = DateTime.Now;
             personModel.IsActive = true;
