@@ -96,5 +96,18 @@ namespace RMS.Controllers
             return rbuModel.Count() == 0 ? "There's no active RBUs" : result;
         }
 
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int Id)
+        {
+            var rbuModel = _rbuService.GetById(Id);
+            var result = string.Empty;
+            if (rbuModel.RBUId != 0)
+            {
+                result = JsonConvert.SerializeObject(rbuModel);
+                return result;
+            }
+            return rbuModel.RBUId == 0 ? "There's no active RBUs" : result;
+        }
+
     }
 }

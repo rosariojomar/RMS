@@ -18,6 +18,7 @@ namespace RMS_DAL.Interfaces
         int RestoreRBU(int id, int UserAccountId);
 
         List<RBUIdNameViewModel> GetAllNameWithId();
+        RBUUpdateViewModel GetById(int Id);
 
     }
 }

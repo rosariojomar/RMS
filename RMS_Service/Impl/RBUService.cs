@@ -116,5 +116,20 @@ namespace RMS_Service.Impl
 
             return rbuModel.RBUId == 0 ? 0 : 1;
         }
+
+        public RBUUpdateViewModel GetById(int Id)
+        {
+            var rbuModel = _context.RBU.Where(x => x.RBUId == Id).Select(x => new RBUUpdateViewModel {
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+            });
+          
+            return (RBUUpdateViewModel)rbuModel;
+        }
+
     }
 }
