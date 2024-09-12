@@ -88,7 +88,7 @@ namespace RMS.Controllers
             return personModel == 0 ? "Person Transaction Failed!" : result;
         }
 
-        [HttpPost("GetById")]
+        [HttpGet("GetById")]
         public async Task<string> GetById(int id)
         {
             var personModel = _personService.GetPersonById(id);

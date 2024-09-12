@@ -125,6 +125,7 @@ namespace RMS_Service.Impl
         {
             var ReferenceTableModel = _context.ReferenceTables.Where(x => x.ReferenceTableId == Id).Select(x => new ReferenceTableUpdateViewModel
             {
+                ReferenceTableId = x.ReferenceTableId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,

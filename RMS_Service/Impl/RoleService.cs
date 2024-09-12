@@ -113,5 +113,20 @@ namespace RMS_Service.Impl
 
             return roleModel.ToList();
         }
+
+        public RoleUpdateViewModel GetById(int id)
+        {
+            var roleModel = _context.Roles.Where(x => x.RoleId == id).Select(x => new RoleUpdateViewModel {
+                RoleId = x.RoleId,
+                Code = x.Code,
+                Name = x.Name,
+                Description = x.Description,
+                UpdatedByUserId = x.UpdatedByUserId,
+                DateUpdated = DateTime.Now,
+                IsActive = x.IsActive,
+            });
+
+            return (RoleUpdateViewModel)roleModel;
+        }
     }
 }

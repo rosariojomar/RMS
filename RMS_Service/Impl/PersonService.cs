@@ -184,7 +184,7 @@ namespace RMS_Service.Impl
 
             var personModel = _context.People.Where(x => x.IsActive == true).Select(x => new PersonViewModel
             {
-
+                PersonId = x.PersonId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Middlename = x.Middlename,

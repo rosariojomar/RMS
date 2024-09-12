@@ -84,7 +84,18 @@ namespace RMS.Controllers
             }
             return roleModel == 0 ? "Role Transaction Failed!" : result;
         }
-
+        [HttpGet("GetById")]
+        public async Task<string> GetById(int id)
+        {
+            var roleModel = _roleService.GetById(id);
+            var result = string.Empty;
+            if (roleModel.RoleId != 0)
+            {
+                result = JsonConvert.SerializeObject(roleModel);
+                return result;
+            }
+            return roleModel.RoleId == 0 ? "Role not found" : result;
+        }
 
     }
 }

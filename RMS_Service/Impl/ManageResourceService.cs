@@ -161,6 +161,7 @@ namespace RMS_Service.Impl
         {
             var personModel = _context.People.Where(x => x.PersonId == Id).Select(x => new ManageResourceUpdateViewModel
             {
+                PersonId = x.PersonId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Middlename = x.Middlename,

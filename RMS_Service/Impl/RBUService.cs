@@ -120,6 +120,7 @@ namespace RMS_Service.Impl
         public RBUUpdateViewModel GetById(int Id)
         {
             var rbuModel = _context.RBU.Where(x => x.RBUId == Id).Select(x => new RBUUpdateViewModel {
+                RBUId = x.RBUId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,

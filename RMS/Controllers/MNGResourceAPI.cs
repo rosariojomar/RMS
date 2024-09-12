@@ -86,7 +86,7 @@ namespace RMS.Controllers
         }
 
 
-        [HttpPost("GetById")]
+        [HttpGet("GetById")]
         public async Task<string> GetById(int id)
         {
             var mngModel = _mngService.GetById(id);

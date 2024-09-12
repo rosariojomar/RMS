@@ -17,5 +17,6 @@ namespace RMS_DAL.Interfaces
         int DeleteRole(int id, int UserAccountId);
         int RestoreRole(int id, int UserAccountId);
         List<RoleIdNameViewModel> GetAllNameWithId();
+        RoleUpdateViewModel GetById(int id);
     }
 }

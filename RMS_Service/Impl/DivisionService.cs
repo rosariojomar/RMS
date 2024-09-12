@@ -131,6 +131,7 @@ namespace RMS_Service.Impl
         {
             var DivisionModel = _context.Divisions.Where(x => x.DivisionId == Id).Select(x => new DivisionUpdateViewModel
             {
+                DivisionId = x.DivisionId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,
