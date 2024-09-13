@@ -140,7 +140,7 @@ namespace RMS_Service.Impl
 
             var personModel = _context.People.Where(x => x.PersonId == id).Select(x => new PersonUpdateViewModel
             {
-
+                PersonId = x.PersonId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Middlename = x.Middlename,

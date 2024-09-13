@@ -55,6 +55,7 @@ namespace RMS_Service.Impl
         {
             var userModel = _context.Users.Where(x => x.IsActive == true).Select(x => new UserViewModel
             {
+                UserId = x.UserId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,

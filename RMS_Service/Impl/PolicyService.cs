@@ -120,6 +120,7 @@ namespace RMS_Service.Impl
         {
             var policyModel = _context.UserPolicies.Where(x => x.IsActive == true).Select(x => new PolicyViewModel
             {
+                UserPolicyId = x.UserPolicyId,
                 RoleId = x.RoleId,
                 UserId = x.UserId,
                 PolicyCode = x.UserPolicyCode,
@@ -176,7 +177,7 @@ namespace RMS_Service.Impl
                     RestoreAccess = xy.RestoreAccess,
                 }).ToList(),
             });
-          
+
             return (PolicyUpdateViewModel)policyModel;
         }
     }

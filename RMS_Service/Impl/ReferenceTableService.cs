@@ -58,6 +58,7 @@ namespace RMS_Service.Impl
         {
             var ReferenceTableModel = _context.ReferenceTables.Where(x => x.IsActive == true).Select(x => new ReferenceTableViewModel
             {
+                ReferenceTableId = x.ReferenceTableId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,

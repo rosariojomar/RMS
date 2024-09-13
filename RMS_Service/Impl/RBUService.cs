@@ -56,6 +56,7 @@ namespace RMS_Service.Impl
         {
             var rbuModel = _context.RBU.Where(x => x.IsActive == true).Select(x => new RBUViewModel
             {
+                RBUId = x.RBUId,
                 Code = x.Code,
                 Name = x.Name,
                 Description = x.Description,
