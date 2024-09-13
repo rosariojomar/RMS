@@ -106,6 +106,26 @@ namespace RMS_Service.Impl
 
         }
 
+        public List<UserAccountViewModel> GetAllUserAccount()
+        {
+            var userModel = _context.UserAccounts.Where(x => x.IsActive == true).Select(x => new UserAccountViewModel
+            {
+                Username = x.Username,
+                UserId = x.UserId,
+                UserType = _context.Users.Where(x => x.UserId == x.UserId).SingleOrDefault().Name,
+                PersonId = x.PersonId,
+                Fullname = _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().LastName + ", " + _context.People.Where(x => x.PersonId == x.PersonId).SingleOrDefault().FirstName,
+                RoleId = x.RoleId,
+                RoleName = _context.Roles.Where(x => x.RoleId == x.RoleId).SingleOrDefault().Name,
+                CreatedByUserId = x.CreatedByUserId,
+                DateCreated = x.DateCreated,
+                IsActive = x.IsActive,
+            });
+
+            return userModel.ToList();
+        }
+
+
         public int CreateUserAccount(UserAccountCreateViewModel vm)
         {
             var userAccModel = new UserAccount()
@@ -142,10 +162,10 @@ namespace RMS_Service.Impl
             return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
         }
 
-        public int DeleteUserAccount(UserAccountUpdateViewModel vm)
+        public int DeleteUserAccount(int Id, int UserAccountId)
         {
-            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == vm.UserAccountId).SingleOrDefault();
-            userAccModel.DeletedByUserId = vm.UpdatedByUserId;
+            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == Id).SingleOrDefault();
+            userAccModel.DeletedByUserId = UserAccountId;
             userAccModel.DateDeleted = DateTime.Now;
             userAccModel.IsActive = false;
 
@@ -154,12 +174,12 @@ namespace RMS_Service.Impl
             return userAccModel.UserAccountId == 0 ? 0 : userAccModel.UserAccountId;
         }
 
-        public int RestoreUserAccount(UserAccountUpdateViewModel vm)
+        public int RestoreUserAccount(int Id, int UserAccountId)
         {
-            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == vm.UserAccountId).SingleOrDefault();
-            userAccModel.DeletedByUserId = vm.UpdatedByUserId;
+            var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == Id).SingleOrDefault();
+            userAccModel.RestoredByUserId = UserAccountId;
             userAccModel.DateDeleted = DateTime.Now;
-            userAccModel.IsActive = true;
+            userAccModel.IsActive = true; 
 
             _context.Update(userAccModel);
             _context.SaveChanges();

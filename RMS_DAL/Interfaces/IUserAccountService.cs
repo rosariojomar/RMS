@@ -18,8 +18,8 @@ namespace RMS_DAL.Interfaces
 
         int CreateUserAccount(UserAccountCreateViewModel vm);
         int UpdateUserAccount(UserAccountUpdateViewModel vm);
-        int DeleteUserAccount(UserAccountUpdateViewModel vm);
-        int RestoreUserAccount(UserAccountUpdateViewModel vm);
+        int DeleteUserAccount(int Id, int UserAccountId);
+        int RestoreUserAccount(int Id, int UserAccountId);
 
 
     }
