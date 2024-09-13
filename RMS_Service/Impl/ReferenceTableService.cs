@@ -5,6 +5,7 @@ using RMS_DAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,7 +71,7 @@ namespace RMS_Service.Impl
 
         public List<ReferenceTableIdNameViewModel> GetAllNameWithId()
         {
-            var ReferenceTableModel = _context.ReferenceTables.Where(x => x.IsActive == false).Select(x => new ReferenceTableIdNameViewModel
+            var ReferenceTableModel = _context.ReferenceTables.Where(x => x.IsActive == true).Select(x => new ReferenceTableIdNameViewModel
             {
                 Value = x.ReferenceTableId,
                 Text = x.Name,
@@ -139,6 +140,15 @@ namespace RMS_Service.Impl
             return (ReferenceTableUpdateViewModel)ReferenceTableModel;
         }
 
+        public List<ReferenceTableDropDownViewModel> GetListClassificaiton(string classif)
+        {
+            var ReferenceTableModel = _context.ReferenceTables.Where(x => x.IsActive == true && x.Classification.ToUpper() == classif.ToUpper()).Select(x => new ReferenceTableDropDownViewModel
+            {
+                ReferenceTableId = x.ReferenceTableId,
+                Name = x.Name,
+            });
 
+            return ReferenceTableModel.ToList();
+        }
     }
 }

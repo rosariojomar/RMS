@@ -157,6 +157,19 @@ namespace RMS.Controllers
             return ReferenceTableModel.Count() == 0 ? "There's no active Reference Tables" : result;
         }
 
+        [HttpGet("Dropdown")]
+        public async Task<string> GetReferenceTableNameListClassification(string classification)
+        {
+            var ReferenceTableModel = _ReferenceTableService.GetListClassificaiton(classification);
+            var result = string.Empty;
+            if (ReferenceTableModel.Count() != 0)
+            {
+                result = JsonConvert.SerializeObject(ReferenceTableModel);
+                return result;
+            }
+            return ReferenceTableModel.Count() == 0 ? "There's no active Reference Tables" : result;
+        }
+
 
         [HttpGet("GetById")]
         public async Task<string> GetById(int Id)

@@ -39,4 +39,10 @@ namespace RMS_DAL.ViewModel
         public string Text { get; set; }
 
     }
+    public class ReferenceTableDropDownViewModel
+    {
+        public int ReferenceTableId { get; set; }
+        public string Name { get; set; }
+
+    }
 }
