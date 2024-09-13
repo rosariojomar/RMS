@@ -9,6 +9,8 @@ using RMS_Service.Impl;
 
 namespace RMS.Controllers
 {
+    [Route("api/UserAccount")]
+    [ApiController]
     public class UserAccountAPIController : Controller
     {
         private readonly UserAccountService _userAccountService;
