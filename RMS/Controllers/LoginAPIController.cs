@@ -36,11 +36,21 @@ namespace RMS.Controllers
             if (userAccModel.UserAccountId != 0)
             {
                 string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
-                var logPath = string.Empty;
 
-                result = JsonConvert.SerializeObject(userAccModel);
-                _cobolService.WriteLog((int)Cobol.TRANSLOG, username + ", LOGIN", cobolAppPath);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(userAccModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                     _cobolService.WriteLog((int)Cobol.TRANSLOG, username + ", LOGIN", cobolAppPath);
+                }
+
             }
             return userAccModel.UserAccountId == 0 ? "User or Password is Invalid" : result;
         }
