@@ -76,7 +76,7 @@ namespace RMS_Service.Impl
 
         public List<UnitIdNameViewModel> GetAllNameWithId()
         {
-            var UnitModel = _context.Units.Where(x => x.IsActive == false).Select(x => new UnitIdNameViewModel
+            var UnitModel = _context.Units.Where(x => x.IsActive == true).Select(x => new UnitIdNameViewModel
             {
                 Value = x.UnitId,
                 Text = x.Name,

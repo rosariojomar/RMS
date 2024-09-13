@@ -73,7 +73,7 @@ namespace RMS_Service.Impl
 
         public List<DivisionIdNameViewModel> GetAllNameWithId()
         {
-            var DivisionModel = _context.Divisions.Where(x => x.IsActive == false).Select(x => new DivisionIdNameViewModel
+            var DivisionModel = _context.Divisions.Where(x => x.IsActive == true).Select(x => new DivisionIdNameViewModel
             {
                 Value = x.DivisionId,
                 Text = x.Name,
