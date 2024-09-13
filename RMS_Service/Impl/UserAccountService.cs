@@ -179,7 +179,7 @@ namespace RMS_Service.Impl
         {
             var userAccModel = _context.UserAccounts.Where(x => x.UserAccountId == Id).SingleOrDefault();
             userAccModel.RestoredByUserId = UserAccountId;
-            userAccModel.DateDeleted = DateTime.Now;
+            userAccModel.DateRestore = DateTime.Now;
             userAccModel.IsActive = true; 
 
             _context.Update(userAccModel);
