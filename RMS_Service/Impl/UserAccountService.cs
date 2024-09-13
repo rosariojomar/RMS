@@ -110,6 +110,7 @@ namespace RMS_Service.Impl
         {
             var userModel = _context.UserAccounts.Where(x => x.IsActive == true).Select(x => new UserAccountViewModel
             {
+                UserAccountId = x.UserAccountId,
                 Username = x.Username,
                 UserId = x.UserId,
                 UserType = _context.Users.Where(x => x.UserId == x.UserId).SingleOrDefault().Name,
