@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -12,10 +14,13 @@ namespace RMS.Controllers
     public class UserPolicyAPIController : Controller
     {
         private readonly PolicyService _policyService;
-
+        private readonly CobolService _cobolService;
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
         public UserPolicyAPIController(RMSContext context)
         {
             _policyService = new PolicyService(context);
+            _cobolService = new CobolService();
         }
 
 
@@ -39,47 +44,101 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (policyModel != 0)
             {
-                result = JsonConvert.SerializeObject(policyModel);
-                return result;
+            
+                try
+                {
+                    result = JsonConvert.SerializeObject(policyModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally{
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE USER POLICY", cobolAppPath);
+                    }
+                }
             }
             return policyModel == 0 ? "Create Policy Transaction Failed!" : result;
         }
 
-        [HttpPost("Edit")]
+        [HttpPost("Update")]
         public async Task<string> Update(PolicyUpdateViewModel viewModel)
         {
             var policyModel = _policyService.UpdatePolicy(viewModel);
             var result = string.Empty;
             if (policyModel != 0)
             {
-                result = JsonConvert.SerializeObject(policyModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(policyModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", UPDATE USER POLICY", cobolAppPath);
+                    }
+                }
+
             }
             return policyModel == 0 ? "Create Policy Transaction Failed!" : result;
         }
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var policyModel = _policyService.DeletePolicy(id, UserAccountId);
             var result = string.Empty;
             if (policyModel != 0)
             {
-                result = JsonConvert.SerializeObject(policyModel);
-                return result;
+              
+                try
+                {
+                    result = JsonConvert.SerializeObject(policyModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE USER POLICY", cobolAppPath);
+                    }
+                }
             }
             return policyModel == 0 ? "Delete Policy Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var policyModel = _policyService.RestorePolicy(id, UserAccountId);
             var result = string.Empty;
             if (policyModel != 0)
             {
-                result = JsonConvert.SerializeObject(policyModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(policyModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", Restore USER POLICY", cobolAppPath);
+                    }
+                }
             }
             return policyModel == 0 ? "Delete Policy Transaction Failed!" : result;
         }

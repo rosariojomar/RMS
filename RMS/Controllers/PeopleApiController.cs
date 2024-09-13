@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Models;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -18,9 +20,15 @@ namespace RMS.Controllers
     public class PeopleAPIController : ControllerBase
     {
         private readonly PersonService _personService;
+        private readonly CobolService _cobolService;
+
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
+
         public PeopleAPIController(RMSContext context)
         {
             _personService = new PersonService(context);
+            _cobolService = new CobolService();
         }
 
         [HttpGet("GetAll")]
@@ -43,8 +51,22 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (personModel != 0)
             {
-                result = JsonConvert.SerializeObject(personModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(personModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE PERSON", cobolAppPath);
+                    }
+                }
+
             }
             return personModel == 0 ? "Person Transaction Failed!" : result;
         }
@@ -56,34 +78,75 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (personModel != 0)
             {
-                result = JsonConvert.SerializeObject(personModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(personModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.UpdatedByUserId.ToString() + ", UPDATE PERSON", cobolAppPath);
+                    }
+                }
             }
             return personModel == 0 ? "Person Transaction Failed!" : result;
         }
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var personModel = _personService.DeletePerson(id, UserAccountId);
             var result = string.Empty;
             if (personModel != 0)
             {
-                result = JsonConvert.SerializeObject(personModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(personModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE PERSON", cobolAppPath);
+                    }
+                }
             }
             return personModel == 0 ? "Person Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var personModel = _personService.RestorePerson(id, UserAccountId);
             var result = string.Empty;
             if (personModel != 0)
             {
-                result = JsonConvert.SerializeObject(personModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(personModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", RESTORE PERSON", cobolAppPath);
+                    }
+                }
+
+
             }
             return personModel == 0 ? "Person Transaction Failed!" : result;
         }

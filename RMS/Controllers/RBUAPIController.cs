@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -12,10 +14,15 @@ namespace RMS.Controllers
     public class RBUAPIController : Controller
     {
         private readonly RBUService _rbuService;
+        private readonly CobolService _cobolService;
+
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
 
         public RBUAPIController(RMSContext context)
         {
             _rbuService = new RBUService(context);
+            _cobolService = new CobolService();
         }
 
         [HttpGet("GetAll")]
@@ -38,8 +45,22 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (rbuModel != 0)
             {
-                result = JsonConvert.SerializeObject(rbuModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(rbuModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE RBU", cobolAppPath);
+                    }
+                }
+                
             }
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
@@ -51,34 +72,74 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (rbuModel != 0)
             {
-                result = JsonConvert.SerializeObject(rbuModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(rbuModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.UpdatedByUserId.ToString() + ", UPDATE RBU", cobolAppPath);
+                    }
+                }
             }
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var rbuModel = _rbuService.DeleteRBU(id, UserAccountId);
             var result = string.Empty;
             if (rbuModel != 0)
             {
-                result = JsonConvert.SerializeObject(rbuModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(rbuModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE RBU", cobolAppPath);
+                    }
+                }
             }
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var rbuModel = _rbuService.RestoreRBU(id, UserAccountId);
             var result = string.Empty;
             if (rbuModel != 0)
             {
-                result = JsonConvert.SerializeObject(rbuModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(rbuModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", RESTORE RBU", cobolAppPath);
+                    }
+                }
             }
             return rbuModel == 0 ? "RBU Transaction Failed!" : result;
         }

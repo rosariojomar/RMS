@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -13,6 +15,9 @@ namespace RMS.Controllers
     public class RoleAPIController : ControllerBase
     {
         private readonly RoleService _roleService;
+        private readonly CobolService _cobolService;
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
 
         public RoleAPIController(RMSContext context)
         {
@@ -39,8 +44,21 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (roleModel != 0)
             {
-                result = JsonConvert.SerializeObject(roleModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(roleModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE ROLE", cobolAppPath);
+                    }
+                }
             }
             return roleModel == 0 ? "Roles Transaction Failed!" : result;
         }
@@ -52,35 +70,74 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (roleModel != 0)
             {
-                result = JsonConvert.SerializeObject(roleModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(roleModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", UPDATE ROLE", cobolAppPath);
+                    }
+                }
             }
             return roleModel == 0 ? "Role Transaction Failed!" : result;
         }
 
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var roleModel = _roleService.DeleteRole(id, UserAccountId);
             var result = string.Empty;
             if (roleModel != 0)
             {
-                result = JsonConvert.SerializeObject(roleModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(roleModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE ROLE", cobolAppPath);
+                    }
+                }
             }
             return roleModel == 0 ? "Role Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var roleModel = _roleService.RestoreRole(id, UserAccountId);
             var result = string.Empty;
             if (roleModel != 0)
             {
-                result = JsonConvert.SerializeObject(roleModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(roleModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", RESTORE ROLE", cobolAppPath);
+                    }
+                }
             }
             return roleModel == 0 ? "Role Transaction Failed!" : result;
         }

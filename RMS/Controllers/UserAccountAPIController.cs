@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -10,9 +12,14 @@ namespace RMS.Controllers
     public class UserAccountAPIController : Controller
     {
         private readonly UserAccountService _userAccountService;
+        private readonly CobolService _cobolService;
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
+
         public UserAccountAPIController(RMSContext context)
         {
             _userAccountService = new UserAccountService(context);
+            _cobolService = new CobolService();
         }
 
         [HttpGet("GetAll")]
@@ -35,8 +42,21 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (userAccModel != 0)
             {
-                result = JsonConvert.SerializeObject(userAccModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(userAccModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE USER ACCOUNT", cobolAppPath);
+                    }
+                }
             }
             return userAccModel == 0 ? "Create UserAccount Transaction Failed!" : result;
         }
@@ -48,34 +68,73 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (userAccModel != 0)
             {
-                result = JsonConvert.SerializeObject(userAccModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(userAccModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.UpdatedByUserId.ToString() + ", UPDATE USER ACCOUNT", cobolAppPath);
+                    }
+                }
             }
             return userAccModel == 0 ? "Create UserAccount Transaction Failed!" : result;
         }
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var userAccModel = _userAccountService.DeleteUserAccount(id, UserAccountId);
             var result = string.Empty;
             if (userAccModel != 0)
             {
-                result = JsonConvert.SerializeObject(userAccModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(userAccModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE USER ACCOUNT", cobolAppPath);
+                    }
+                }
             }
             return userAccModel == 0 ? "Delete UserAccount Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var userAccModel = _userAccountService.RestoreUserAccount(id, UserAccountId);
             var result = string.Empty;
             if (userAccModel != 0)
             {
-                result = JsonConvert.SerializeObject(userAccModel);
-                return result;
+                try
+                {
+                    result = JsonConvert.SerializeObject(userAccModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", RESTORE USER ACCOUNT", cobolAppPath);
+                    }
+                }
             }
             return userAccModel == 0 ? "Restore UserAccount Transaction Failed!" : result;
         }

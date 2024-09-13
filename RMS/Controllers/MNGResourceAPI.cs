@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RMS_COBOL.Impl;
+using RMS_DAL.Enum;
 using RMS_DAL.Interfaces;
 using RMS_DAL.RMSDBContext;
 using RMS_DAL.ViewModel;
@@ -14,9 +16,15 @@ namespace RMS.Controllers
     {
 
         private readonly ManageResourceService _mngService;
+        private readonly CobolService _cobolService;
+
+        string cobolAppPath = AppSett.ConfigurationManager.AppSetting["COBOLAPPPATH"];
+        string cobolCond = AppSett.ConfigurationManager.AppSetting["COBOLACTIVATE"];
+
         public MNGResourceAPI(RMSContext context)
         {
             _mngService = new ManageResourceService(context);
+            _cobolService = new CobolService();
         }
 
         [HttpGet("GetAll")]
@@ -39,48 +47,106 @@ namespace RMS.Controllers
             var result = string.Empty;
             if (mngModel != 0)
             {
-                result = JsonConvert.SerializeObject(mngModel);
-                return result;
+
+                try
+                {
+                    result = JsonConvert.SerializeObject(mngModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", CREATE MANAGE RESOURCE", cobolAppPath);
+                    }
+
+                }
+
             }
             return mngModel == 0 ? "Create Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("Edit")]
+        [HttpPost("Update")]
         public async Task<string> Update(ManageResourceUpdateViewModel viewModel)
         {
             var mngModel = _mngService.UpdateResource(viewModel);
             var result = string.Empty;
             if (mngModel != 0)
             {
-                result = JsonConvert.SerializeObject(mngModel);
-                return result;
+
+                try
+                {
+                    result = JsonConvert.SerializeObject(mngModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, viewModel.CreatedByUserId.ToString() + ", UPDATE MANAGE RESOURCE", cobolAppPath);
+                    }
+
+                }
             }
             return mngModel == 0 ? "Update Resource Transaction Failed!" : result;
         }
 
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var mngModel = _mngService.DeleteResource(id, UserAccountId);
             var result = string.Empty;
             if (mngModel != 0)
             {
-                result = JsonConvert.SerializeObject(mngModel);
-                return result;
+            
+
+                try
+                {
+                    result = JsonConvert.SerializeObject(mngModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (cobolCond == "1")
+                    {
+                        _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", DELETE MANAGE RESOURCE", cobolAppPath);
+                    }
+
+                }
             }
             return mngModel == 0 ? "Delete Resource Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var mngModel = _mngService.RestoreResource(id, UserAccountId);
             var result = string.Empty;
             if (mngModel != 0)
             {
-                result = JsonConvert.SerializeObject(mngModel);
-                return result;
+                
+                try
+                {
+                    result = JsonConvert.SerializeObject(mngModel);
+                    return result;
+                }
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    _cobolService.WriteLog((int)Cobol.TRANSLOG, UserAccountId.ToString() + ", RESTORE MANAGE RESOURCE", cobolAppPath);
+                }
             }
             return mngModel == 0 ? "Restore Resource Transaction Failed!" : result;
         }

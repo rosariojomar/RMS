@@ -88,7 +88,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpPost("Delete")]
+        [HttpGet("Delete")]
         public async Task<string> Delete(int id, int UserAccountId)
         {
             var deptModel = _deptService.DeleteDept(id, UserAccountId);
@@ -115,7 +115,7 @@ namespace RMS.Controllers
             return deptModel == 0 ? "Department Transaction Failed!" : result;
         }
 
-        [HttpPost("Restore")]
+        [HttpGet("Restore")]
         public async Task<string> Restore(int id, int UserAccountId)
         {
             var deptModel = _deptService.RestoreDept(id, UserAccountId);
